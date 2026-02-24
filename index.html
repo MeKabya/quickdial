@@ -18,6 +18,8 @@
             background: #f0f2f5;
             min-height: 100vh;
             transition: all 0.3s;
+            padding-bottom: 100px;
+            position: relative;
         }
         
         body.dark-mode {
@@ -31,19 +33,27 @@
             padding: 20px;
         }
         
-        /* Theme Toggle */
-        .theme-btn {
+        /* Theme Toggle - Perfect Circle Fixed at Top */
+        .theme-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 15px;
+            z-index: 1000;
+        }
+        
+        .theme-btn {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             border: none;
             background: white;
             cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
         
         .dark-mode .theme-btn {
@@ -51,10 +61,14 @@
             color: white;
         }
         
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
         /* Header */
         header {
             text-align: center;
-            margin: 50px 0;
+            margin: 80px 0 50px 0;
         }
         
         .logo {
@@ -65,19 +79,22 @@
         }
         
         .logo i {
-            font-size: 50px;
+            font-size: 60px;
             color: #dc2626;
             animation: heartbeat 1.5s infinite;
         }
         
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
         }
         
         .logo h1 {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 800;
+            background: linear-gradient(135deg, #2563eb, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         /* Sections */
@@ -96,34 +113,41 @@
         .section h2 {
             margin-bottom: 25px;
             font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        /* Buttons Grid */
-        .grid {
+        /* City Grid */
+        .city-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
         
-        .city-btn, .service-btn {
-            background: #2563eb;
+        .city-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             color: white;
             border: none;
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 18px;
+            padding: 25px 15px;
+            border-radius: 15px;
+            font-size: 20px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
         
-        .city-btn:hover, .service-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-3px);
+        .city-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+        }
+        
+        .city-btn i {
+            font-size: 30px;
         }
         
         .city-btn small {
@@ -131,89 +155,148 @@
             opacity: 0.9;
         }
         
-        /* National Numbers */
-        .national-box {
-            background: #fee2e2;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        .dark-mode .national-box {
-            background: #3b1e1e;
-        }
-        
-        .national-grid {
+        /* Service Grid */
+        .service-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         
-        .national-card {
-            background: #dc2626;
+        .service-btn {
+            background: linear-gradient(135deg, #059669, #047857);
             color: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            text-decoration: none;
-        }
-        
-        .national-card i {
-            font-size: 24px;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .national-card span {
-            font-size: 16px;
-            display: block;
-        }
-        
-        .national-card strong {
+            border: none;
+            padding: 30px 20px;
+            border-radius: 15px;
             font-size: 22px;
-            display: block;
-            margin-top: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
         
-        /* Results */
-        .result-item {
+        .service-btn.police {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+        
+        .service-btn.fire {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+        }
+        
+        .service-btn.hospital {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+        
+        .service-btn.ambulance {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+        
+        .service-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .service-btn i {
+            font-size: 40px;
+        }
+        
+        /* Results Section */
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .result-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
         }
         
-        .dark-mode .result-item {
+        .dark-mode .result-card {
             background: #363636;
             border-color: #444;
         }
         
-        .result-item h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
+        .result-card:hover {
+            transform: translateX(5px);
+            border-color: #2563eb;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .result-item p {
+        .result-card h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .result-card p {
             color: #64748b;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .dark-mode .result-card p {
+            color: #a0a0a0;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
         .call-btn {
             background: #2563eb;
             color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-right: 10px;
         }
         
-        .call-btn.emergency {
+        .call-btn:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+        
+        .map-btn {
+            background: #059669;
+            color: white;
+        }
+        
+        .map-btn:hover {
+            background: #047857;
+            transform: scale(1.05);
+        }
+        
+        .emergency-call {
             background: #dc2626;
+            color: white;
+        }
+        
+        .emergency-call:hover {
+            background: #b91c1c;
         }
         
         /* Back Button */
@@ -221,11 +304,16 @@
             background: transparent;
             border: 2px solid #2563eb;
             color: #2563eb;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 25px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 16px;
             margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-weight: 600;
         }
         
         .dark-mode .back-btn {
@@ -233,30 +321,57 @@
             border-color: white;
         }
         
-        /* Emergency Floating Button */
-        .emergency-float {
+        .back-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+        
+        /* Emergency 999 - Fixed at Bottom */
+        .emergency-fixed {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: auto;
+            min-width: 300px;
         }
         
-        .emergency-float a {
+        .emergency-fixed a {
             background: #dc2626;
             color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
+            padding: 18px 35px;
+            border-radius: 60px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 800;
+            font-size: 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 20px rgba(220,38,38,0.5);
-            animation: pulse 2s infinite;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(220,38,38,0.5);
+            animation: emergencyPulse 2s infinite;
+            border: 3px solid white;
         }
         
-        @keyframes pulse {
+        .dark-mode .emergency-fixed a {
+            border-color: #333;
+        }
+        
+        @keyframes emergencyPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+        
+        .emergency-fixed a i {
+            font-size: 28px;
+            animation: emergencyBell 1s infinite;
+        }
+        
+        @keyframes emergencyBell {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
         }
         
         /* Hide/Show */
@@ -270,14 +385,85 @@
             padding: 20px;
             margin-top: 40px;
             border-top: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dark-mode footer {
+            border-top-color: #444;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #64748b;
+        }
+        
+        .loading i {
+            font-size: 40px;
+            color: #2563eb;
+            animation: spin 1s linear infinite;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                margin: 60px 0 30px 0;
+            }
+            
+            .logo h1 {
+                font-size: 36px;
+            }
+            
+            .logo i {
+                font-size: 40px;
+            }
+            
+            .city-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .emergency-fixed {
+                min-width: 250px;
+                bottom: 20px;
+            }
+            
+            .emergency-fixed a {
+                padding: 15px 25px;
+                font-size: 20px;
+            }
+            
+            .card-actions {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Theme Button -->
-    <button class="theme-btn" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Theme Toggle - Perfect Circle Fixed at Top -->
+    <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
     <div class="container">
         <!-- Header -->
@@ -286,13 +472,13 @@
                 <i class="fas fa-heart-broken"></i>
                 <h1>Life Saver</h1>
             </div>
-            <p>Bangladesh Emergency Response System</p>
+            <p style="font-size: 18px; opacity: 0.8;">Bangladesh Emergency Response System</p>
         </header>
 
         <!-- City Selection Section -->
         <div id="citySection" class="section">
-            <h2><i class="fas fa-map-marker-alt"></i> Select Your City</h2>
-            <div class="grid">
+            <h2><i class="fas fa-map-marker-alt" style="color: #2563eb;"></i> Select Your City</h2>
+            <div class="city-grid">
                 <button class="city-btn" onclick="selectCity('dhaka')">
                     <i class="fas fa-city"></i>
                     Dhaka
@@ -336,204 +522,192 @@
             </div>
         </div>
 
-        <!-- Service Selection Section (Hidden by default) -->
+        <!-- Service Selection Section -->
         <div id="serviceSection" class="section hidden">
             <button class="back-btn" onclick="goBackToCities()">
                 <i class="fas fa-arrow-left"></i> Change City
             </button>
-            <h2 id="selectedCityDisplay">Dhaka - Select Service</h2>
-            <div class="grid">
-                <button class="service-btn" onclick="selectService('police')">
+            <h2><span id="selectedCityDisplay"></span> - Select Service</h2>
+            <div class="service-grid">
+                <button class="service-btn police" onclick="selectService('police')">
                     <i class="fas fa-shield-alt"></i>
                     Police
                 </button>
-                <button class="service-btn" onclick="selectService('fire')">
+                <button class="service-btn fire" onclick="selectService('fire')">
                     <i class="fas fa-fire-extinguisher"></i>
                     Fire Service
                 </button>
-                <button class="service-btn" onclick="selectService('hospital')">
+                <button class="service-btn hospital" onclick="selectService('hospital')">
                     <i class="fas fa-hospital"></i>
                     Hospital
                 </button>
-                <button class="service-btn" onclick="selectService('ambulance')">
+                <button class="service-btn ambulance" onclick="selectService('ambulance')">
                     <i class="fas fa-ambulance"></i>
                     Ambulance
                 </button>
             </div>
         </div>
 
-        <!-- Results Section (Hidden by default) -->
+        <!-- Results Section -->
         <div id="resultSection" class="section hidden">
             <button class="back-btn" onclick="goBackToServices()">
                 <i class="fas fa-arrow-left"></i> Back to Services
             </button>
-            <h2 id="resultHeader">Results</h2>
+            <h2 id="resultHeader"></h2>
             
-            <!-- National Numbers -->
-            <div class="national-box">
-                <h3>National Emergency Numbers</h3>
-                <div class="national-grid">
-                    <a href="tel:999" class="national-card">
-                        <i class="fas fa-police-box"></i>
-                        <span>Police</span>
-                        <strong>999</strong>
-                    </a>
-                    <a href="tel:199" class="national-card">
-                        <i class="fas fa-fire"></i>
-                        <span>Fire</span>
-                        <strong>199</strong>
-                    </a>
-                    <a href="tel:123" class="national-card">
-                        <i class="fas fa-heartbeat"></i>
-                        <span>Ambulance</span>
-                        <strong>123</strong>
-                    </a>
+            <!-- Results will be inserted here -->
+            <div id="resultsList" class="results-list">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    Loading...
                 </div>
             </div>
-
-            <!-- Results will be inserted here -->
-            <div id="resultsList"></div>
         </div>
 
-        <!-- Emergency Floating Button -->
-        <div class="emergency-float">
+        <!-- Emergency 999 - Fixed at Bottom (Always Visible) -->
+        <div class="emergency-fixed">
             <a href="tel:999">
                 <i class="fas fa-exclamation-triangle"></i>
-                Emergency 999
+                EMERGENCY 999
+                <i class="fas fa-phone-alt"></i>
             </a>
         </div>
     </div>
 
     <footer>
-        <p><i class="fas fa-heart-broken"></i> Life Saver - Emergency Contacts Bangladesh</p>
+        <p><i class="fas fa-heart-broken" style="color: #dc2626;"></i> Life Saver - Emergency Contacts Bangladesh</p>
         <p style="font-size: 14px; opacity: 0.7;">In emergency, always call 999 first</p>
     </footer>
 
     <script>
-        // Emergency Database
+        // Emergency Database with Coordinates for Map
         const database = {
             dhaka: {
                 name: "Dhaka",
                 police: [
-                    { name: "Dhaka Metropolitan Police", number: "01713455660", location: "Headquarters" },
-                    { name: "Ramna Police Station", number: "01713455661", location: "Ramna" }
+                    { name: "Dhaka Metropolitan Police", number: "01713455660", location: "Headquarters", lat: "23.7289", lng: "90.3854" },
+                    { name: "Ramna Police Station", number: "01713455661", location: "Ramna", lat: "23.7376", lng: "90.3947" },
+                    { name: "Gulshan Police Station", number: "01713455662", location: "Gulshan", lat: "23.7925", lng: "90.4152" }
                 ],
                 fire: [
-                    { name: "Dhaka Fire Service HQ", number: "01769000111", location: "Headquarters" },
-                    { name: "Tejgaon Fire Station", number: "01769000112", location: "Tejgaon" }
+                    { name: "Dhaka Fire Service HQ", number: "01769000111", location: "Headquarters", lat: "23.7289", lng: "90.3854" },
+                    { name: "Tejgaon Fire Station", number: "01769000112", location: "Tejgaon", lat: "23.7642", lng: "90.3822" }
                 ],
                 hospital: [
-                    { name: "Square Hospital", number: "01713455667", address: "Panthapath" },
-                    { name: "United Hospital", number: "01755567890", address: "Gulshan" }
+                    { name: "Square Hospital", number: "01713455667", address: "18/F, West Panthapath, Dhaka", lat: "23.7385", lng: "90.3854", emergency: "01713455666" },
+                    { name: "United Hospital", number: "01755567890", address: "Plot 15, Road 71, Gulshan", lat: "23.7925", lng: "90.4152", emergency: "01755567891" },
+                    { name: "Apollo Hospital", number: "01744455667", address: "Plot 81, Block E, Bashundhara", lat: "23.8133", lng: "90.4252" },
+                    { name: "Dhaka Medical College", number: "01769000333", address: "Secretariat Road", lat: "23.7263", lng: "90.3961" }
                 ],
                 ambulance: [
-                    { name: "Dhaka Ambulance Service", number: "01769000222", location: "24/7 Service" },
-                    { name: "Red Crescent Ambulance", number: "01711555665", location: "Emergency" }
+                    { name: "Dhaka Ambulance Service", number: "01769000222", location: "24/7 Service", lat: "23.7289", lng: "90.3854" },
+                    { name: "Red Crescent Ambulance", number: "01711555665", location: "Emergency Service", lat: "23.7376", lng: "90.3947" }
                 ]
             },
             chittagong: {
                 name: "Chittagong",
                 police: [
-                    { name: "Chittagong Metropolitan Police", number: "01711555660", location: "Headquarters" }
+                    { name: "Chittagong Metropolitan Police", number: "01711555660", location: "Headquarters", lat: "22.3351", lng: "91.8321" }
                 ],
                 fire: [
-                    { name: "Chittagong Fire Service", number: "01711555661", location: "Headquarters" }
+                    { name: "Chittagong Fire Service", number: "01711555661", location: "Headquarters", lat: "22.3351", lng: "91.8321" }
                 ],
                 hospital: [
-                    { name: "Chittagong Medical College", number: "01711555667", address: "K.B. Fazlul Kader Road" }
+                    { name: "Chittagong Medical College", number: "01711555667", address: "K.B. Fazlul Kader Road", lat: "22.3431", lng: "91.8372", emergency: "01711555668" },
+                    { name: "CSCR Hospital", number: "01722667788", address: "GEC Circle", lat: "22.3563", lng: "91.8232" }
                 ],
                 ambulance: [
-                    { name: "Chittagong Ambulance", number: "01711555662", location: "City Service" }
+                    { name: "Chittagong Ambulance", number: "01711555662", location: "City Service", lat: "22.3351", lng: "91.8321" }
                 ]
             },
             rajshahi: {
                 name: "Rajshahi",
                 police: [
-                    { name: "Rajshahi Metropolitan Police", number: "01711555991", location: "Headquarters" }
+                    { name: "Rajshahi Metropolitan Police", number: "01711555991", location: "Headquarters", lat: "24.3745", lng: "88.6042" }
                 ],
                 fire: [
-                    { name: "Rajshahi Fire Service", number: "01711555992", location: "Headquarters" }
+                    { name: "Rajshahi Fire Service", number: "01711555992", location: "Headquarters", lat: "24.3745", lng: "88.6042" }
                 ],
                 hospital: [
-                    { name: "Rajshahi Medical College", number: "01711555999", address: "Laxmipur" }
+                    { name: "Rajshahi Medical College", number: "01711555999", address: "Laxmipur", lat: "24.3745", lng: "88.6042" }
                 ],
                 ambulance: [
-                    { name: "Rajshahi Ambulance", number: "01711555993", location: "City Service" }
+                    { name: "Rajshahi Ambulance", number: "01711555993", location: "City Service", lat: "24.3745", lng: "88.6042" }
                 ]
             },
             khulna: {
                 name: "Khulna",
                 police: [
-                    { name: "Khulna Metropolitan Police", number: "01711555882", location: "Headquarters" }
+                    { name: "Khulna Metropolitan Police", number: "01711555882", location: "Headquarters", lat: "22.8456", lng: "89.5403" }
                 ],
                 fire: [
-                    { name: "Khulna Fire Service", number: "01711555881", location: "Headquarters" }
+                    { name: "Khulna Fire Service", number: "01711555881", location: "Headquarters", lat: "22.8456", lng: "89.5403" }
                 ],
                 hospital: [
-                    { name: "Khulna Medical College", number: "01711555888", address: "Sonadanga" }
+                    { name: "Khulna Medical College", number: "01711555888", address: "Sonadanga", lat: "22.8456", lng: "89.5403" }
                 ],
                 ambulance: [
-                    { name: "Khulna Ambulance", number: "01711555880", location: "City Service" }
+                    { name: "Khulna Ambulance", number: "01711555880", location: "City Service", lat: "22.8456", lng: "89.5403" }
                 ]
             },
             barisal: {
                 name: "Barisal",
                 police: [
-                    { name: "Barisal Metropolitan Police", number: "01711555773", location: "Headquarters" }
+                    { name: "Barisal Metropolitan Police", number: "01711555773", location: "Headquarters", lat: "22.7029", lng: "90.3695" }
                 ],
                 fire: [
-                    { name: "Barisal Fire Service", number: "01711555772", location: "Headquarters" }
+                    { name: "Barisal Fire Service", number: "01711555772", location: "Headquarters", lat: "22.7029", lng: "90.3695" }
                 ],
                 hospital: [
-                    { name: "Sher-e-Bangla Medical College", number: "01711555777", address: "Barisal Sadar" }
+                    { name: "Sher-e-Bangla Medical College", number: "01711555777", address: "Barisal Sadar", lat: "22.7029", lng: "90.3695" }
                 ],
                 ambulance: [
-                    { name: "Barisal Ambulance", number: "01711555771", location: "City Service" }
+                    { name: "Barisal Ambulance", number: "01711555771", location: "City Service", lat: "22.7029", lng: "90.3695" }
                 ]
             },
             sylhet: {
                 name: "Sylhet",
                 police: [
-                    { name: "Sylhet Metropolitan Police", number: "01711555660", location: "Headquarters" }
+                    { name: "Sylhet Metropolitan Police", number: "01711555660", location: "Headquarters", lat: "24.8949", lng: "91.8687" }
                 ],
                 fire: [
-                    { name: "Sylhet Fire Service", number: "01711555659", location: "Headquarters" }
+                    { name: "Sylhet Fire Service", number: "01711555659", location: "Headquarters", lat: "24.8949", lng: "91.8687" }
                 ],
                 hospital: [
-                    { name: "Sylhet MAG Osmani Medical College", number: "01711555666", address: "Mirboxtula" }
+                    { name: "Sylhet MAG Osmani Medical College", number: "01711555666", address: "Mirboxtula", lat: "24.8949", lng: "91.8687" }
                 ],
                 ambulance: [
-                    { name: "Sylhet Ambulance", number: "01711555658", location: "City Service" }
+                    { name: "Sylhet Ambulance", number: "01711555658", location: "City Service", lat: "24.8949", lng: "91.8687" }
                 ]
             },
             rangpur: {
                 name: "Rangpur",
                 police: [
-                    { name: "Rangpur Metropolitan Police", number: "01711555551", location: "Headquarters" }
+                    { name: "Rangpur Metropolitan Police", number: "01711555551", location: "Headquarters", lat: "25.7469", lng: "89.2508" }
                 ],
                 fire: [
-                    { name: "Rangpur Fire Service", number: "01711555550", location: "Headquarters" }
+                    { name: "Rangpur Fire Service", number: "01711555550", location: "Headquarters", lat: "25.7469", lng: "89.2508" }
                 ],
                 hospital: [
-                    { name: "Rangpur Medical College", number: "01711555555", address: "Medical Road" }
+                    { name: "Rangpur Medical College", number: "01711555555", address: "Medical Road", lat: "25.7469", lng: "89.2508" }
                 ],
                 ambulance: [
-                    { name: "Rangpur Ambulance", number: "01711555549", location: "City Service" }
+                    { name: "Rangpur Ambulance", number: "01711555549", location: "City Service", lat: "25.7469", lng: "89.2508" }
                 ]
             },
             mymensingh: {
                 name: "Mymensingh",
                 police: [
-                    { name: "Mymensingh Metropolitan Police", number: "01711555440", location: "Headquarters" }
+                    { name: "Mymensingh Metropolitan Police", number: "01711555440", location: "Headquarters", lat: "24.7471", lng: "90.4203" }
                 ],
                 fire: [
-                    { name: "Mymensingh Fire Service", number: "01711555439", location: "Headquarters" }
+                    { name: "Mymensingh Fire Service", number: "01711555439", location: "Headquarters", lat: "24.7471", lng: "90.4203" }
                 ],
                 hospital: [
-                    { name: "Mymensingh Medical College", number: "01711555444", address: "Medical College Road" }
+                    { name: "Mymensingh Medical College", number: "01711555444", address: "Medical College Road", lat: "24.7471", lng: "90.4203" }
                 ],
                 ambulance: [
-                    { name: "Mymensingh Ambulance", number: "01711555438", location: "City Service" }
+                    { name: "Mymensingh Ambulance", number: "01711555438", location: "City Service", lat: "24.7471", lng: "90.4203" }
                 ]
             }
         };
@@ -545,18 +719,25 @@
         // Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            const btn = document.querySelector('.theme-btn i');
+            const icon = document.querySelector('.theme-btn i');
             if (document.body.classList.contains('dark-mode')) {
-                btn.className = 'fas fa-sun';
+                icon.className = 'fas fa-sun';
             } else {
-                btn.className = 'fas fa-moon';
+                icon.className = 'fas fa-moon';
             }
+        }
+
+        // Open Map Function
+        function openMap(lat, lng, name) {
+            // Try to open in Google Maps app, fallback to web
+            const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${encodeURIComponent(name)}`;
+            window.open(url, '_blank');
         }
 
         // City Selection
         function selectCity(city) {
             selectedCity = city;
-            document.getElementById('selectedCityDisplay').innerHTML = database[city].name + ' - Select Service';
+            document.getElementById('selectedCityDisplay').innerHTML = database[city].name;
             document.getElementById('citySection').classList.add('hidden');
             document.getElementById('serviceSection').classList.remove('hidden');
         }
@@ -573,35 +754,57 @@
                 'hospital': 'Hospitals',
                 'ambulance': 'Ambulance Services'
             };
-            document.getElementById('resultHeader').innerHTML = cityData.name + ' - ' + serviceNames[service];
+            document.getElementById('resultHeader').innerHTML = `${cityData.name} - ${serviceNames[service]}`;
             
-            // Load results
+            // Load results (no national numbers here, only the selected service)
             const items = cityData[service];
             let html = '';
             
-            items.forEach(item => {
-                if (service === 'hospital') {
-                    html += `
-                        <div class="result-item">
-                            <h4><i class="fas fa-hospital"></i> ${item.name}</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> ${item.address || 'City Area'}</p>
-                            <a href="tel:${item.number}" class="call-btn">
-                                <i class="fas fa-phone"></i> Call: ${item.number}
-                            </a>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="result-item">
-                            <h4><i class="fas ${service === 'police' ? 'fa-police-box' : service === 'fire' ? 'fa-fire' : 'fa-ambulance'}"></i> ${item.name}</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> ${item.location || 'City Area'}</p>
-                            <a href="tel:${item.number}" class="call-btn">
-                                <i class="fas fa-phone"></i> Call: ${item.number}
-                            </a>
-                        </div>
-                    `;
-                }
-            });
+            if (!items || items.length === 0) {
+                html = '<div class="result-card"><p>No information available for this service in this city.</p></div>';
+            } else {
+                items.forEach(item => {
+                    if (service === 'hospital') {
+                        html += `
+                            <div class="result-card">
+                                <h4><i class="fas fa-hospital" style="color: #059669;"></i> ${item.name}</h4>
+                                <p><i class="fas fa-map-marker-alt" style="color: #2563eb;"></i> ${item.address || 'No address available'}</p>
+                                <div class="card-actions">
+                                    <a href="tel:${item.number}" class="action-btn call-btn">
+                                        <i class="fas fa-phone"></i> Call: ${item.number}
+                                    </a>
+                                    <button onclick="openMap('${item.lat}', '${item.lng}', '${item.name}')" class="action-btn map-btn">
+                                        <i class="fas fa-map"></i> View on Map
+                                    </button>
+                                    ${item.emergency ? `
+                                    <a href="tel:${item.emergency}" class="action-btn emergency-call">
+                                        <i class="fas fa-ambulance"></i> Emergency
+                                    </a>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        const icon = service === 'police' ? 'fa-police-box' : (service === 'fire' ? 'fa-fire' : 'fa-ambulance');
+                        const color = service === 'police' ? '#2563eb' : (service === 'fire' ? '#ea580c' : '#dc2626');
+                        
+                        html += `
+                            <div class="result-card">
+                                <h4><i class="fas ${icon}" style="color: ${color};"></i> ${item.name}</h4>
+                                <p><i class="fas fa-map-marker-alt" style="color: #2563eb;"></i> ${item.location || 'City Area'}</p>
+                                <div class="card-actions">
+                                    <a href="tel:${item.number}" class="action-btn call-btn">
+                                        <i class="fas fa-phone"></i> Call: ${item.number}
+                                    </a>
+                                    <button onclick="openMap('${item.lat}', '${item.lng}', '${item.name}')" class="action-btn map-btn">
+                                        <i class="fas fa-map"></i> View on Map
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
             
             document.getElementById('resultsList').innerHTML = html;
             
