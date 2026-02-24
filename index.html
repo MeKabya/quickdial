@@ -3,20 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Saver - Bangladesh Emergency</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Life Saver Bangladesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Baloo Da 2', cursive;
+        }
+        
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+        
+        body.dark-mode {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Theme Toggle */
+        .theme-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .dark-mode .theme-btn {
+            background: #333;
+            color: white;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 50px;
+            color: #dc2626;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .logo h1 {
+            font-size: 48px;
+            font-weight: 800;
+        }
+        
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .section {
+            background: #2d2d2d;
+        }
+        
+        .section h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        
+        /* Buttons Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .city-btn, .service-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .city-btn:hover, .service-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+        }
+        
+        .city-btn small {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* National Numbers */
+        .national-box {
+            background: #fee2e2;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .dark-mode .national-box {
+            background: #3b1e1e;
+        }
+        
+        .national-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .national-card {
+            background: #dc2626;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .national-card i {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .national-card span {
+            font-size: 16px;
+            display: block;
+        }
+        
+        .national-card strong {
+            font-size: 22px;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        /* Results */
+        .result-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .dark-mode .result-item {
+            background: #363636;
+            border-color: #444;
+        }
+        
+        .result-item h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .result-item p {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        
+        .call-btn {
+            background: #2563eb;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 10px;
+        }
+        
+        .call-btn.emergency {
+            background: #dc2626;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            background: transparent;
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .dark-mode .back-btn {
+            color: white;
+            border-color: white;
+        }
+        
+        /* Emergency Floating Button */
+        .emergency-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+        }
+        
+        .emergency-float a {
+            background: #dc2626;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(220,38,38,0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Hide/Show */
+        .hidden {
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-        <button id="themeBtn" class="theme-btn">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
+    <!-- Theme Button -->
+    <button class="theme-btn" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <div class="container">
         <!-- Header -->
@@ -25,127 +286,357 @@
                 <i class="fas fa-heart-broken"></i>
                 <h1>Life Saver</h1>
             </div>
-            <p class="subtitle">Bangladesh Emergency Response System</p>
+            <p>Bangladesh Emergency Response System</p>
         </header>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- City Selection -->
-            <div id="citySection" class="section">
-                <h2><i class="fas fa-map-marker-alt"></i> Select Your City</h2>
-                <div class="city-grid">
-                    <button class="city-card" onclick="selectCity('dhaka')">
-                        <span class="city-name">Dhaka</span>
-                        <span class="city-desc">Central Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('chittagong')">
-                        <span class="city-name">Chittagong</span>
-                        <span class="city-desc">Port City</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('rajshahi')">
-                        <span class="city-name">Rajshahi</span>
-                        <span class="city-desc">Northern Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('khulna')">
-                        <span class="city-name">Khulna</span>
-                        <span class="city-desc">Southern Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('barisal')">
-                        <span class="city-name">Barisal</span>
-                        <span class="city-desc">River Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('sylhet')">
-                        <span class="city-name">Sylhet</span>
-                        <span class="city-desc">Northeast Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('rangpur')">
-                        <span class="city-name">Rangpur</span>
-                        <span class="city-desc">Northwest Region</span>
-                    </button>
-                    <button class="city-card" onclick="selectCity('mymensingh')">
-                        <span class="city-name">Mymensingh</span>
-                        <span class="city-desc">Central North</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Service Selection (Hidden by default) -->
-            <div id="serviceSection" class="section" style="display: none;">
-                <button class="back-btn" onclick="goBackToCities()">
-                    <i class="fas fa-arrow-left"></i> Change City
+        <!-- City Selection Section -->
+        <div id="citySection" class="section">
+            <h2><i class="fas fa-map-marker-alt"></i> Select Your City</h2>
+            <div class="grid">
+                <button class="city-btn" onclick="selectCity('dhaka')">
+                    <i class="fas fa-city"></i>
+                    Dhaka
+                    <small>Central Region</small>
                 </button>
-                <h2><span id="selectedCityDisplay"></span> - Select Service</h2>
-                <div class="service-grid">
-                    <button class="service-card" onclick="selectService('police')">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Police</span>
-                    </button>
-                    <button class="service-card" onclick="selectService('fire')">
-                        <i class="fas fa-fire-extinguisher"></i>
-                        <span>Fire Service</span>
-                    </button>
-                    <button class="service-card" onclick="selectService('hospital')">
-                        <i class="fas fa-hospital"></i>
-                        <span>Hospital</span>
-                    </button>
-                    <button class="service-card" onclick="selectService('ambulance')">
-                        <i class="fas fa-ambulance"></i>
-                        <span>Ambulance</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Results Section (Hidden by default) -->
-            <div id="resultSection" class="section" style="display: none;">
-                <button class="back-btn" onclick="goBackToServices()">
-                    <i class="fas fa-arrow-left"></i> Back to Services
+                <button class="city-btn" onclick="selectCity('chittagong')">
+                    <i class="fas fa-ship"></i>
+                    Chittagong
+                    <small>Port City</small>
                 </button>
-                <h2 id="resultHeader"></h2>
-                
-                <!-- National Emergency Numbers -->
-                <div class="national-section">
-                    <h3>National Emergency</h3>
-                    <div class="national-grid">
-                        <a href="tel:999" class="national-card">
-                            <i class="fas fa-police-box"></i>
-                            <span>Police</span>
-                            <strong>999</strong>
-                        </a>
-                        <a href="tel:199" class="national-card">
-                            <i class="fas fa-fire"></i>
-                            <span>Fire</span>
-                            <strong>199</strong>
-                        </a>
-                        <a href="tel:123" class="national-card">
-                            <i class="fas fa-heartbeat"></i>
-                            <span>Ambulance</span>
-                            <strong>123</strong>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Results List -->
-                <div id="resultsList" class="results-list">
-                    <!-- Results will be loaded here -->
-                </div>
+                <button class="city-btn" onclick="selectCity('rajshahi')">
+                    <i class="fas fa-mountain"></i>
+                    Rajshahi
+                    <small>Northern Region</small>
+                </button>
+                <button class="city-btn" onclick="selectCity('khulna')">
+                    <i class="fas fa-water"></i>
+                    Khulna
+                    <small>Southern Region</small>
+                </button>
+                <button class="city-btn" onclick="selectCity('barisal')">
+                    <i class="fas fa-river"></i>
+                    Barisal
+                    <small>River Region</small>
+                </button>
+                <button class="city-btn" onclick="selectCity('sylhet')">
+                    <i class="fas fa-leaf"></i>
+                    Sylhet
+                    <small>Northeast Region</small>
+                </button>
+                <button class="city-btn" onclick="selectCity('rangpur')">
+                    <i class="fas fa-snowflake"></i>
+                    Rangpur
+                    <small>Northwest Region</small>
+                </button>
+                <button class="city-btn" onclick="selectCity('mymensingh')">
+                    <i class="fas fa-tree"></i>
+                    Mymensingh
+                    <small>Central North</small>
+                </button>
             </div>
         </div>
 
-        <!-- Quick Emergency Button -->
-        <div class="quick-emergency">
-            <a href="tel:999" class="emergency-btn">
+        <!-- Service Selection Section (Hidden by default) -->
+        <div id="serviceSection" class="section hidden">
+            <button class="back-btn" onclick="goBackToCities()">
+                <i class="fas fa-arrow-left"></i> Change City
+            </button>
+            <h2 id="selectedCityDisplay">Dhaka - Select Service</h2>
+            <div class="grid">
+                <button class="service-btn" onclick="selectService('police')">
+                    <i class="fas fa-shield-alt"></i>
+                    Police
+                </button>
+                <button class="service-btn" onclick="selectService('fire')">
+                    <i class="fas fa-fire-extinguisher"></i>
+                    Fire Service
+                </button>
+                <button class="service-btn" onclick="selectService('hospital')">
+                    <i class="fas fa-hospital"></i>
+                    Hospital
+                </button>
+                <button class="service-btn" onclick="selectService('ambulance')">
+                    <i class="fas fa-ambulance"></i>
+                    Ambulance
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <div id="resultSection" class="section hidden">
+            <button class="back-btn" onclick="goBackToServices()">
+                <i class="fas fa-arrow-left"></i> Back to Services
+            </button>
+            <h2 id="resultHeader">Results</h2>
+            
+            <!-- National Numbers -->
+            <div class="national-box">
+                <h3>National Emergency Numbers</h3>
+                <div class="national-grid">
+                    <a href="tel:999" class="national-card">
+                        <i class="fas fa-police-box"></i>
+                        <span>Police</span>
+                        <strong>999</strong>
+                    </a>
+                    <a href="tel:199" class="national-card">
+                        <i class="fas fa-fire"></i>
+                        <span>Fire</span>
+                        <strong>199</strong>
+                    </a>
+                    <a href="tel:123" class="national-card">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Ambulance</span>
+                        <strong>123</strong>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Results will be inserted here -->
+            <div id="resultsList"></div>
+        </div>
+
+        <!-- Emergency Floating Button -->
+        <div class="emergency-float">
+            <a href="tel:999">
                 <i class="fas fa-exclamation-triangle"></i>
                 Emergency 999
             </a>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p><i class="fas fa-heart-broken"></i> Life Saver - Emergency Contacts Bangladesh</p>
-        <p class="disclaimer">For emergencies, always call 999 first</p>
+        <p style="font-size: 14px; opacity: 0.7;">In emergency, always call 999 first</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Emergency Database
+        const database = {
+            dhaka: {
+                name: "Dhaka",
+                police: [
+                    { name: "Dhaka Metropolitan Police", number: "01713455660", location: "Headquarters" },
+                    { name: "Ramna Police Station", number: "01713455661", location: "Ramna" }
+                ],
+                fire: [
+                    { name: "Dhaka Fire Service HQ", number: "01769000111", location: "Headquarters" },
+                    { name: "Tejgaon Fire Station", number: "01769000112", location: "Tejgaon" }
+                ],
+                hospital: [
+                    { name: "Square Hospital", number: "01713455667", address: "Panthapath" },
+                    { name: "United Hospital", number: "01755567890", address: "Gulshan" }
+                ],
+                ambulance: [
+                    { name: "Dhaka Ambulance Service", number: "01769000222", location: "24/7 Service" },
+                    { name: "Red Crescent Ambulance", number: "01711555665", location: "Emergency" }
+                ]
+            },
+            chittagong: {
+                name: "Chittagong",
+                police: [
+                    { name: "Chittagong Metropolitan Police", number: "01711555660", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Chittagong Fire Service", number: "01711555661", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Chittagong Medical College", number: "01711555667", address: "K.B. Fazlul Kader Road" }
+                ],
+                ambulance: [
+                    { name: "Chittagong Ambulance", number: "01711555662", location: "City Service" }
+                ]
+            },
+            rajshahi: {
+                name: "Rajshahi",
+                police: [
+                    { name: "Rajshahi Metropolitan Police", number: "01711555991", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Rajshahi Fire Service", number: "01711555992", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Rajshahi Medical College", number: "01711555999", address: "Laxmipur" }
+                ],
+                ambulance: [
+                    { name: "Rajshahi Ambulance", number: "01711555993", location: "City Service" }
+                ]
+            },
+            khulna: {
+                name: "Khulna",
+                police: [
+                    { name: "Khulna Metropolitan Police", number: "01711555882", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Khulna Fire Service", number: "01711555881", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Khulna Medical College", number: "01711555888", address: "Sonadanga" }
+                ],
+                ambulance: [
+                    { name: "Khulna Ambulance", number: "01711555880", location: "City Service" }
+                ]
+            },
+            barisal: {
+                name: "Barisal",
+                police: [
+                    { name: "Barisal Metropolitan Police", number: "01711555773", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Barisal Fire Service", number: "01711555772", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Sher-e-Bangla Medical College", number: "01711555777", address: "Barisal Sadar" }
+                ],
+                ambulance: [
+                    { name: "Barisal Ambulance", number: "01711555771", location: "City Service" }
+                ]
+            },
+            sylhet: {
+                name: "Sylhet",
+                police: [
+                    { name: "Sylhet Metropolitan Police", number: "01711555660", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Sylhet Fire Service", number: "01711555659", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Sylhet MAG Osmani Medical College", number: "01711555666", address: "Mirboxtula" }
+                ],
+                ambulance: [
+                    { name: "Sylhet Ambulance", number: "01711555658", location: "City Service" }
+                ]
+            },
+            rangpur: {
+                name: "Rangpur",
+                police: [
+                    { name: "Rangpur Metropolitan Police", number: "01711555551", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Rangpur Fire Service", number: "01711555550", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Rangpur Medical College", number: "01711555555", address: "Medical Road" }
+                ],
+                ambulance: [
+                    { name: "Rangpur Ambulance", number: "01711555549", location: "City Service" }
+                ]
+            },
+            mymensingh: {
+                name: "Mymensingh",
+                police: [
+                    { name: "Mymensingh Metropolitan Police", number: "01711555440", location: "Headquarters" }
+                ],
+                fire: [
+                    { name: "Mymensingh Fire Service", number: "01711555439", location: "Headquarters" }
+                ],
+                hospital: [
+                    { name: "Mymensingh Medical College", number: "01711555444", address: "Medical College Road" }
+                ],
+                ambulance: [
+                    { name: "Mymensingh Ambulance", number: "01711555438", location: "City Service" }
+                ]
+            }
+        };
+
+        // State
+        let selectedCity = '';
+        let selectedService = '';
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-btn i');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.className = 'fas fa-sun';
+            } else {
+                btn.className = 'fas fa-moon';
+            }
+        }
+
+        // City Selection
+        function selectCity(city) {
+            selectedCity = city;
+            document.getElementById('selectedCityDisplay').innerHTML = database[city].name + ' - Select Service';
+            document.getElementById('citySection').classList.add('hidden');
+            document.getElementById('serviceSection').classList.remove('hidden');
+        }
+
+        // Service Selection
+        function selectService(service) {
+            selectedService = service;
+            const cityData = database[selectedCity];
+            
+            // Set header
+            const serviceNames = {
+                'police': 'Police Stations',
+                'fire': 'Fire Service Stations',
+                'hospital': 'Hospitals',
+                'ambulance': 'Ambulance Services'
+            };
+            document.getElementById('resultHeader').innerHTML = cityData.name + ' - ' + serviceNames[service];
+            
+            // Load results
+            const items = cityData[service];
+            let html = '';
+            
+            items.forEach(item => {
+                if (service === 'hospital') {
+                    html += `
+                        <div class="result-item">
+                            <h4><i class="fas fa-hospital"></i> ${item.name}</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> ${item.address || 'City Area'}</p>
+                            <a href="tel:${item.number}" class="call-btn">
+                                <i class="fas fa-phone"></i> Call: ${item.number}
+                            </a>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="result-item">
+                            <h4><i class="fas ${service === 'police' ? 'fa-police-box' : service === 'fire' ? 'fa-fire' : 'fa-ambulance'}"></i> ${item.name}</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> ${item.location || 'City Area'}</p>
+                            <a href="tel:${item.number}" class="call-btn">
+                                <i class="fas fa-phone"></i> Call: ${item.number}
+                            </a>
+                        </div>
+                    `;
+                }
+            });
+            
+            document.getElementById('resultsList').innerHTML = html;
+            
+            // Show results section
+            document.getElementById('serviceSection').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
+        }
+
+        // Navigation
+        function goBackToCities() {
+            document.getElementById('serviceSection').classList.add('hidden');
+            document.getElementById('citySection').classList.remove('hidden');
+        }
+
+        function goBackToServices() {
+            document.getElementById('resultSection').classList.add('hidden');
+            document.getElementById('serviceSection').classList.remove('hidden');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (!document.getElementById('resultSection').classList.contains('hidden')) {
+                    goBackToServices();
+                } else if (!document.getElementById('serviceSection').classList.contains('hidden')) {
+                    goBackToCities();
+                }
+            }
+        });
+
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-btn i').className = 'fas fa-sun';
+        }
+    </script>
 </body>
 </html>
