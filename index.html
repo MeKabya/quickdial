@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Dial · emergency directory</title>
+    <title>Quick Dial</title>
     <!-- Baloo Da 2 (exactly as requested) -->
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -281,7 +281,7 @@
             content: "\f3c5"; /* map-marker-alt */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: #b91c1c; /* red to match heading icon */
+            color: blue; /* red to match heading icon */
             font-size: 16px;
             opacity: 0.7;
             transition: opacity 0.15s;
@@ -368,15 +368,15 @@
         
         /* point 4: icon colors and changes */
         .service-card[data-service="hospital"] i { color: #b91c1c; }      /* red unchanged */
-        .service-card[data-service="ambulance"] i { color: #1e293b; }    /* almost black */
-        .night-mode .service-card[data-service="ambulance"] i { color: #d1dbe9; }
+        .service-card[data-service="ambulance"] i { color: green; }    /* almost black */
+        .night-mode .service-card[data-service="ambulance"] i { color: white; }
         /* police -> star icon, bright sky blue */
         .service-card[data-service="police"] i { 
-            color: #7dd3fc;  /* bright sky blue */
+            color: #fde047;  /* bright sky blue */
         }
         /* fire -> bright yellow */
         .service-card[data-service="fire"] i { 
-            color: #fde047;  /* bright yellow */
+            color: #blue;  /* bright yellow */
         }
         
         /* hover: only scale, no red background */
@@ -695,7 +695,7 @@
             <div class="logo-area">
                 <h1>QUICK DIAL</h1>
             </div>
-            <p class="tagline">Connecting you to safety.</p>
+            <p class="tagline">⛔️Contacts aren't manually verified.</p>
             <!-- DAY/NIGHT toggle centred with text -->
             <div class="theme-toggle">
                 <button class="theme-btn" id="themeBtn">
