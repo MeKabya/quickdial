@@ -21,6 +21,8 @@
             transition: background 0.3s ease, color 0.2s;
             padding: 24px;
             color: #1e293b;
+            display: flex;
+            flex-direction: column;
         }
         
         /* professional light mode - clean, soft shadows, minimal red */
@@ -32,6 +34,8 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
+            width: 100%;
+            flex: 1 0 auto;
         }
 
         /* ----- HEADER with centered day/night toggle (text) ----- */
@@ -163,11 +167,12 @@
             color: #edf2f9;
         }
         
+        /* ----- change #citySection h2 icon color to RED (point 2) ----- */
         .section h2 i {
-            color: #3b82f6; /* blue instead of red */
+            color: #b91c1c; /* changed from blue to red */
         }
 
-        /* ---------- CITY SELECTOR: now a dropdown style ---------- */
+        /* ---------- CITY SELECTOR: dropdown style, each city with border (point 1) ---------- */
         .city-selector-wrapper {
             display: flex;
             flex-direction: column;
@@ -229,7 +234,7 @@
             padding: 18px 10px;
             display: none;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 10px;
             width: 100%;
             max-width: 540px;
             margin-top: 8px;
@@ -244,14 +249,15 @@
             display: grid;
         }
         
+        /* point 1: each city button now has a consistent border */
         .city-option {
             background: transparent;
-            border: none;
+            border: 2px solid #a0bbd9;  /* solid border around each city */
             padding: 14px 8px;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 600;
             color: #1e293b;
-            border-radius: 40px;
+            border-radius: 50px;
             cursor: pointer;
             transition: 0.15s;
             text-align: center;
@@ -260,11 +266,13 @@
         
         .night-mode .city-option {
             color: #e0eaff;
+            border-color: #5881aa;
         }
         
         .city-option:hover {
             background: #ecf3fd;
             color: #1e3a5f;
+            border-color: #2563eb;
         }
         
         .night-mode .city-option:hover {
@@ -316,12 +324,19 @@
             transition: transform 0.2s;
         }
         
-        /* individual icon colors */
-        .service-card[data-service="hospital"] i { color: #b91c1c; }      /* red */
+        /* point 4: icon colors and changes */
+        .service-card[data-service="hospital"] i { color: #b91c1c; }      /* red unchanged */
         .service-card[data-service="ambulance"] i { color: #1e293b; }    /* almost black */
         .night-mode .service-card[data-service="ambulance"] i { color: #d1dbe9; }
-        .service-card[data-service="police"] i { color: #1e4b8f; }        /* deep blue */
-        .service-card[data-service="fire"] i { color: #b45309; }          /* burnt orange (less red) */
+        /* police -> star icon, bright sky blue */
+        .service-card[data-service="police"] i { 
+            color: #7dd3fc;  /* bright sky blue */
+        }
+        .service-card[data-service="police"] i::before { content: "\f005"; } /* star */ 
+        /* fire -> bright yellow */
+        .service-card[data-service="fire"] i { 
+            color: #fde047;  /* bright yellow */
+        }
         
         /* hover: only scale, no red background */
         .service-card:hover {
@@ -464,6 +479,16 @@
             transform: translateY(-2px);
         }
         
+        /* point 5: emergency button color red */
+        .emergency-btn {
+            background: #b91c1c;  /* bright red */
+            color: white;
+            box-shadow: 0 6px 14px rgba(185,28,28,0.2);
+        }
+        .emergency-btn:hover {
+            background: #991b1b;
+        }
+        
         .map-btn {
             background: #f0f5fd;
             color: #1e405e;
@@ -574,17 +599,51 @@
             font-size: 16px;
         }
         
-        footer {
+        /* FOOTER — fixed at bottom (point 3) */
+        .page-footer {
             text-align: center;
             padding: 32px 0 16px;
             margin-top: 40px;
             border-top: 1px solid #d2e0ee;
             color: #627a98;
+            width: 100%;
+            flex-shrink: 0; /* keeps footer at bottom of flex column */
         }
         
-        .night-mode footer {
+        .night-mode .page-footer {
             border-color: #2e4562;
             color: #8aa2c0;
+        }
+
+        /* QR image styling (point 8) */
+        .qr-code {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .qr-code img {
+            width: 110px;
+            height: auto;
+            border-radius: 24px; /* rounded corners */
+            border: 2px solid #d4e0ec;
+            padding: 8px;
+            background: white;
+        }
+        .night-mode .qr-code img {
+            border-color: #3f5e83;
+            background: #1e2f45;
+        }
+
+        /* adjust container & body for footer always at bottom */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            flex: 1 0 auto;
         }
     </style>
 </head>
@@ -614,7 +673,7 @@
                     </div>
                 </div>
                 <div class="city-dropdown" id="cityDropdown">
-                    <!-- nine cities -->
+                    <!-- nine cities with border (ensured via css) -->
                     <button class="city-option" data-city="dhaka">Dhaka</button>
                     <button class="city-option" data-city="chittagong">Chittagong</button>
                     <button class="city-option" data-city="rajshahi">Rajshahi</button>
@@ -628,7 +687,7 @@
             </div>
         </div>
 
-        <!-- Service Section (order changed: hospital - ambulance - police - fire) -->
+        <!-- Service Section (order: hospital - ambulance - police - fire) -->
         <div id="serviceSection" class="section hidden">
             <div class="back-top-wrapper">
                 <button class="back-btn" onclick="goBackToCities()"><i class="fas fa-arrow-left"></i> Back</button>
@@ -637,8 +696,8 @@
             <h2><span id="selectedCityDisplay"></span> <i class="fas fa-chevron-right" style="font-size: 20px; color:#94a3b8;"></i></h2>
             <div class="service-grid">
                 <button class="service-card" data-service="hospital"><i class="fas fa-hospital"></i>Hospitals</button>
-                <button class="service-card" data-service="ambulance"><i class="fas fa-ambulance"></i>Emergency Ambulance</button>
-                <button class="service-card" data-service="police"><i class="fas fa-shield-alt"></i>Police Station</button>
+                <button class="service-card" data-service="ambulance"><i class="fas fa-ambulance"></i>Ambulance</button> <!-- text changed -->
+                <button class="service-card" data-service="police"><i class="fas fa-star"></i>Police Station</button> <!-- icon star -->
                 <button class="service-card" data-service="fire"><i class="fas fa-fire-extinguisher"></i>Fire Service</button>
             </div>
 
@@ -669,23 +728,115 @@
             </div>
         </div>
 
-        <footer>
-            <p>© 2026 All Rights Reserved • Kabya Saha</p>
-        </footer>
-    </div>
+    </div> <!-- end container -->
+
+    <!-- FOOTER with QR image and copyright (fixed at bottom) -->
+    <footer class="page-footer">
+        <!-- point 8: QR code image above reserved -->
+        <div class="qr-code">
+            <img src="https://images.iimg.live/images/amazing-work-4507.webp" alt="QR Code">
+        </div>
+        <p>© 2026 All Rights Reserved • Kabya Saha</p>
+    </footer>
 
     <script>
-        // ---------- UPDATED DATABASE (added Comilla, and mapLink placeholder) ----------
+        // ---------- EXPANDED DATABASE with many hospitals (point 6 & 7) ----------
         const database = {
-            dhaka: { name: "Dhaka", police: [ { name: "Dhaka Metropolitan Police", number: "01713455660", location: "Headquarters" }, { name: "Ramna Police Station", number: "01713455661", location: "Ramna" }, { name: "Gulshan Police Station", number: "01713455662", location: "Gulshan" } ], fire: [ { name: "Dhaka Fire Service HQ", number: "01769000111", location: "Headquarters" }, { name: "Tejgaon Fire Station", number: "01769000112", location: "Tejgaon" } ], hospital: [ { name: "Square Hospital", number: "01713455667", address: "18/F, West Panthapath, Dhaka", emergency: "01713455666", mapLink: "https://maps.app.goo.gl/xyz1" }, { name: "United Hospital", number: "01755567890", address: "Plot 15, Road 71, Gulshan, Dhaka", emergency: "01755567891", mapLink: "https://maps.app.goo.gl/xyz2" }, { name: "Apollo Hospital Dhaka", number: "01744455667", address: "Plot 81, Block E, Bashundhara, Dhaka", mapLink: "https://maps.app.goo.gl/xyz3" }, { name: "Dhaka Medical College Hospital", number: "01769000333", address: "Secretariat Road, Dhaka", emergency: "01769000334", mapLink: "https://maps.app.goo.gl/xyz4" }, { name: "Birdem Hospital", number: "01711445566", address: "Shahbagh, Dhaka", mapLink: "https://maps.app.goo.gl/xyz5" } ], ambulance: [ { name: "Dhaka Ambulance Service", number: "01769000222", location: "24/7 Service" }, { name: "Red Crescent Ambulance", number: "01711555665", location: "Emergency Service" } ] },
-            chittagong: { name: "Chittagong", police: [ { name: "Chittagong Metropolitan Police", number: "01711555660", location: "Headquarters" } ], fire: [ { name: "Chittagong Fire Service", number: "01711555661", location: "Headquarters" } ], hospital: [ { name: "Chittagong Medical College Hospital", number: "01711555667", address: "K.B. Fazlul Kader Road, Chittagong", emergency: "01711555668", mapLink: "https://maps.app.goo.gl/xyz13" }, { name: "CSCR Hospital", number: "01722667788", address: "GEC Circle, Chittagong", mapLink: "https://maps.app.goo.gl/xyz14" } ], ambulance: [ { name: "Chittagong Ambulance", number: "01711555662", location: "City Service" } ] },
-            rajshahi: { name: "Rajshahi", police: [ { name: "Rajshahi Metropolitan Police", number: "01711555991", location: "Headquarters" } ], fire: [ { name: "Rajshahi Fire Service", number: "01711555992", location: "Headquarters" } ], hospital: [ { name: "Rajshahi Medical College Hospital", number: "01711555999", address: "Laxmipur, Rajshahi", emergency: "01711555998", mapLink: "https://maps.app.goo.gl/xyz18" } ], ambulance: [ { name: "Rajshahi Ambulance", number: "01711555993", location: "City Service" } ] },
-            khulna: { name: "Khulna", police: [ { name: "Khulna Metropolitan Police", number: "01711555882", location: "Headquarters" } ], fire: [ { name: "Khulna Fire Service", number: "01711555881", location: "Headquarters" } ], hospital: [ { name: "Khulna Medical College Hospital", number: "01711555888", address: "Sonadanga, Khulna", emergency: "01711555887", mapLink: "https://maps.app.goo.gl/xyz21" } ], ambulance: [ { name: "Khulna Ambulance", number: "01711555880", location: "City Service" } ] },
-            barisal: { name: "Barisal", police: [ { name: "Barisal Metropolitan Police", number: "01711555773", location: "Headquarters" } ], fire: [ { name: "Barisal Fire Service", number: "01711555772", location: "Headquarters" } ], hospital: [ { name: "Sher-e-Bangla Medical College Hospital", number: "01711555777", address: "Barisal Sadar, Barisal", emergency: "01711555776", mapLink: "https://maps.app.goo.gl/xyz24" } ], ambulance: [ { name: "Barisal Ambulance", number: "01711555771", location: "City Service" } ] },
-            sylhet: { name: "Sylhet", police: [ { name: "Sylhet Metropolitan Police", number: "01711555660", location: "Headquarters" } ], fire: [ { name: "Sylhet Fire Service", number: "01711555659", location: "Headquarters" } ], hospital: [ { name: "Sylhet MAG Osmani Medical College", number: "01711555666", address: "Mirboxtula, Sylhet", emergency: "01711555665", mapLink: "https://maps.app.goo.gl/xyz26" } ], ambulance: [ { name: "Sylhet Ambulance", number: "01711555658", location: "City Service" } ] },
-            rangpur: { name: "Rangpur", police: [ { name: "Rangpur Metropolitan Police", number: "01711555551", location: "Headquarters" } ], fire: [ { name: "Rangpur Fire Service", number: "01711555550", location: "Headquarters" } ], hospital: [ { name: "Rangpur Medical College Hospital", number: "01711555555", address: "Medical Road, Rangpur", emergency: "01711555554", mapLink: "https://maps.app.goo.gl/xyz29" } ], ambulance: [ { name: "Rangpur Ambulance", number: "01711555549", location: "City Service" } ] },
-            mymensingh: { name: "Mymensingh", police: [ { name: "Mymensingh Metropolitan Police", number: "01711555440", location: "Headquarters" } ], fire: [ { name: "Mymensingh Fire Service", number: "01711555439", location: "Headquarters" } ], hospital: [ { name: "Mymensingh Medical College Hospital", number: "01711555444", address: "Medical College Road, Mymensingh", emergency: "01711555443", mapLink: "https://maps.app.goo.gl/xyz31" } ], ambulance: [ { name: "Mymensingh Ambulance", number: "01711555438", location: "City Service" } ] },
-            comilla: { name: "Comilla", police: [ { name: "Comilla Police Line", number: "01710001111", location: "Headquarters" } ], fire: [ { name: "Comilla Fire Station", number: "01710001122", location: "Main" } ], hospital: [ { name: "Comilla Medical College Hospital", number: "01710003333", address: "Comilla", emergency: "01710003344", mapLink: "https://maps.app.goo.gl/placeholder_comilla" } ], ambulance: [ { name: "Comilla Ambulance", number: "01710004444", location: "City" } ] }
+            dhaka: { 
+                name: "Dhaka", 
+                police: [ { name: "Dhaka Metropolitan Police", number: "01713455660", location: "Headquarters" }, { name: "Ramna Police Station", number: "01713455661", location: "Ramna" }, { name: "Gulshan Police Station", number: "01713455662", location: "Gulshan" } ], 
+                fire: [ { name: "Dhaka Fire Service HQ", number: "01769000111", location: "Headquarters" }, { name: "Tejgaon Fire Station", number: "01769000112", location: "Tejgaon" } ], 
+                hospital: [ 
+                    { name: "Square Hospital", number: "01713455667", address: "18/F, West Panthapath, Dhaka", emergency: "01713455666", mapLink: "https://maps.app.goo.gl/xyz1" },
+                    { name: "United Hospital", number: "01755567890", address: "Plot 15, Road 71, Gulshan, Dhaka", emergency: "01755567891", mapLink: "https://maps.app.goo.gl/xyz2" },
+                    { name: "Apollo Hospital Dhaka", number: "01744455667", address: "Plot 81, Block E, Bashundhara, Dhaka", mapLink: "https://maps.app.goo.gl/xyz3" },
+                    { name: "Dhaka Medical College Hospital", number: "01769000333", address: "Secretariat Road, Dhaka", emergency: "01769000334", mapLink: "https://maps.app.goo.gl/xyz4" },
+                    { name: "Birdem Hospital", number: "01711445566", address: "Shahbagh, Dhaka", mapLink: "https://maps.app.goo.gl/xyz5" },
+                    { name: "Labaid Hospital", number: "01712345678", address: "Dhanmondi, Dhaka", emergency: "01712345679", mapLink: "https://maps.app.goo.gl/xyz6" },
+                    { name: "Ibn Sina Hospital", number: "01722223333", address: "Dhanmondi, Dhaka", mapLink: "https://maps.app.goo.gl/xyz7" },
+                    { name: "Anwar Khan Modern Hospital", number: "01733334444", address: "Dhanmondi, Dhaka", emergency: "01733334455", mapLink: "https://maps.app.goo.gl/xyz8" }
+                ], 
+                ambulance: [ { name: "Dhaka Ambulance Service", number: "01769000222", location: "24/7 Service" }, { name: "Red Crescent Ambulance", number: "01711555665", location: "Emergency Service" } ] 
+            },
+            chittagong: { 
+                name: "Chittagong", 
+                police: [ { name: "Chittagong Metropolitan Police", number: "01711555660", location: "Headquarters" } ], 
+                fire: [ { name: "Chittagong Fire Service", number: "01711555661", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Chittagong Medical College Hospital", number: "01711555667", address: "K.B. Fazlul Kader Road, Chittagong", emergency: "01711555668", mapLink: "https://maps.app.goo.gl/xyz13" },
+                    { name: "CSCR Hospital", number: "01722667788", address: "GEC Circle, Chittagong", mapLink: "https://maps.app.goo.gl/xyz14" },
+                    { name: "Parkview Hospital", number: "01799887766", address: "Chittagong", emergency: "01799887755", mapLink: "https://maps.app.goo.gl/xyz15" }
+                ], 
+                ambulance: [ { name: "Chittagong Ambulance", number: "01711555662", location: "City Service" } ] 
+            },
+            rajshahi: { 
+                name: "Rajshahi", 
+                police: [ { name: "Rajshahi Metropolitan Police", number: "01711555991", location: "Headquarters" } ], 
+                fire: [ { name: "Rajshahi Fire Service", number: "01711555992", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Rajshahi Medical College Hospital", number: "01711555999", address: "Laxmipur, Rajshahi", emergency: "01711555998", mapLink: "https://maps.app.goo.gl/xyz18" },
+                    { name: "Islami Bank Hospital", number: "01711555997", address: "Rajshahi", mapLink: "https://maps.app.goo.gl/xyz19" }
+                ], 
+                ambulance: [ { name: "Rajshahi Ambulance", number: "01711555993", location: "City Service" } ] 
+            },
+            khulna: { 
+                name: "Khulna", 
+                police: [ { name: "Khulna Metropolitan Police", number: "01711555882", location: "Headquarters" } ], 
+                fire: [ { name: "Khulna Fire Service", number: "01711555881", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Khulna Medical College Hospital", number: "01711555888", address: "Sonadanga, Khulna", emergency: "01711555887", mapLink: "https://maps.app.goo.gl/xyz21" },
+                    { name: "City Hospital Khulna", number: "01711555886", address: "Khulna", mapLink: "https://maps.app.goo.gl/xyz22" }
+                ], 
+                ambulance: [ { name: "Khulna Ambulance", number: "01711555880", location: "City Service" } ] 
+            },
+            barisal: { 
+                name: "Barisal", 
+                police: [ { name: "Barisal Metropolitan Police", number: "01711555773", location: "Headquarters" } ], 
+                fire: [ { name: "Barisal Fire Service", number: "01711555772", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Sher-e-Bangla Medical College Hospital", number: "01711555777", address: "Barisal Sadar, Barisal", emergency: "01711555776", mapLink: "https://maps.app.goo.gl/xyz24" }
+                ], 
+                ambulance: [ { name: "Barisal Ambulance", number: "01711555771", location: "City Service" } ] 
+            },
+            sylhet: { 
+                name: "Sylhet", 
+                police: [ { name: "Sylhet Metropolitan Police", number: "01711555660", location: "Headquarters" } ], 
+                fire: [ { name: "Sylhet Fire Service", number: "01711555659", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Sylhet MAG Osmani Medical College", number: "01711555666", address: "Mirboxtula, Sylhet", emergency: "01711555665", mapLink: "https://maps.app.goo.gl/xyz26" },
+                    { name: "Jalalabad Hospital", number: "01711555664", address: "Sylhet", mapLink: "https://maps.app.goo.gl/xyz27" }
+                ], 
+                ambulance: [ { name: "Sylhet Ambulance", number: "01711555658", location: "City Service" } ] 
+            },
+            rangpur: { 
+                name: "Rangpur", 
+                police: [ { name: "Rangpur Metropolitan Police", number: "01711555551", location: "Headquarters" } ], 
+                fire: [ { name: "Rangpur Fire Service", number: "01711555550", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Rangpur Medical College Hospital", number: "01711555555", address: "Medical Road, Rangpur", emergency: "01711555554", mapLink: "https://maps.app.goo.gl/xyz29" },
+                    { name: "Prime Hospital", number: "01711555553", address: "Rangpur", mapLink: "https://maps.app.goo.gl/xyz30" }
+                ], 
+                ambulance: [ { name: "Rangpur Ambulance", number: "01711555549", location: "City Service" } ] 
+            },
+            mymensingh: { 
+                name: "Mymensingh", 
+                police: [ { name: "Mymensingh Metropolitan Police", number: "01711555440", location: "Headquarters" } ], 
+                fire: [ { name: "Mymensingh Fire Service", number: "01711555439", location: "Headquarters" } ], 
+                hospital: [ 
+                    { name: "Mymensingh Medical College Hospital", number: "01711555444", address: "Medical College Road, Mymensingh", emergency: "01711555443", mapLink: "https://maps.app.goo.gl/xyz31" }
+                ], 
+                ambulance: [ { name: "Mymensingh Ambulance", number: "01711555438", location: "City Service" } ] 
+            },
+            comilla: { 
+                name: "Comilla", 
+                police: [ { name: "Comilla Police Line", number: "01710001111", location: "Headquarters" } ], 
+                fire: [ { name: "Comilla Fire Station", number: "01710001122", location: "Main" } ], 
+                hospital: [ 
+                    { name: "Comilla Medical College Hospital", number: "01710003333", address: "Comilla", emergency: "01710003344", mapLink: "https://maps.app.goo.gl/placeholder_comilla1" },
+                    { name: "Eastern Medical College", number: "01710003345", address: "Comilla", mapLink: "https://maps.app.goo.gl/placeholder_comilla2" }
+                ], 
+                ambulance: [ { name: "Comilla Ambulance", number: "01710004444", location: "City" } ] 
+            }
         };
 
         // ---------- STATE ----------
@@ -749,7 +900,7 @@
             btn.addEventListener('click', (e) => {
                 selectedService = e.currentTarget.getAttribute('data-service');
                 const cityData = database[selectedCity];
-                const serviceNames = { hospital:'Hospitals', ambulance:'Emergency Ambulance', police:'Police Station', fire:'Fire Service' };
+                const serviceNames = { hospital:'Hospitals', ambulance:'Ambulance', police:'Police Station', fire:'Fire Service' };
                 document.getElementById('resultHeader').innerHTML = `${cityData.name} · ${serviceNames[selectedService]}`;
 
                 const searchBox = document.getElementById('searchBox');
@@ -785,7 +936,8 @@
             let html = '';
             pageItems.forEach(item => {
                 if (service === 'hospital') {
-                    const mapLink = item.mapLink || 'https://maps.app.goo.gl/placeholder';  // placeholder ready for real link
+                    const mapLink = item.mapLink || 'https://maps.app.goo.gl/placeholder';  
+                    // point 5: emergency button red class
                     html += `
                         <div class="result-card">
                             <h4><i class="fas fa-hospital"></i> ${item.name}</h4>
@@ -793,12 +945,12 @@
                             <div class="card-actions">
                                 <a href="tel:${item.number}" class="action-btn call-btn"><i class="fas fa-phone"></i> Call</a>
                                 <a href="${mapLink}" target="_blank" rel="noopener noreferrer" class="action-btn map-btn"><i class="fas fa-map-marked-alt"></i> Map</a>
-                                ${item.emergency ? `<a href="tel:${item.emergency}" class="action-btn call-btn" style="background:#1e4b8f;"><i class="fas fa-ambulance"></i> Emergency</a>` : ''}
+                                ${item.emergency ? `<a href="tel:${item.emergency}" class="action-btn emergency-btn"><i class="fas fa-exclamation-triangle"></i> Emergency</a>` : ''}
                             </div>
                         </div>
                     `;
                 } else {
-                    let icon = (service === 'police') ? 'fa-shield-halved' : (service === 'fire' ? 'fa-fire' : 'fa-truck-medical');
+                    let icon = (service === 'police') ? 'fa-star' : (service === 'fire' ? 'fa-fire' : 'fa-truck-medical');
                     html += `
                         <div class="result-card">
                             <h4><i class="fas ${icon}"></i> ${item.name}</h4>
