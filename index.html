@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Dial</title>
-    <!-- Baloo Da 2 (exactly as requested) -->
+    <!-- Professional red dial icon for browser tab -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b91c1c'%3E%3Cpath d='M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z'/%3E%3Cpath d='M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2z'/%3E%3Cpath d='M16.422 13.443c-.293-.293-.684-.45-1.076-.45-.397 0-.788.157-1.083.45l-2.12 2.12c-2.244-.783-3.814-2.354-4.596-4.58l2.12-2.12c.586-.586.586-1.536 0-2.122L6.3 4.221c-.293-.293-.684-.45-1.076-.45-.397 0-.788.157-1.083.45L2.5 5.865c-.657.657-.92 1.564-.756 2.421.55 2.826 2.28 5.647 4.696 8.064 2.416 2.416 5.238 4.146 8.064 4.696.857.164 1.764-.099 2.421-.756l1.644-1.644c.293-.293.45-.684.45-1.083 0-.392-.157-.783-.45-1.076l-3.069-3.069z' fill='%23b91c1c'/%3E%3C/svg%3E" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Baloo Da 2 font -->
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -25,7 +28,6 @@
             flex-direction: column;
         }
         
-        /* professional light mode - clean, soft shadows, minimal red */
         body.night-mode {
             background: #1a2538;
             color: #e9edf2;
@@ -38,7 +40,6 @@
             flex: 1 0 auto;
         }
 
-        /* ----- HEADER with centered day/night toggle (text) ----- */
         .top-header {
             display: flex;
             flex-direction: column;
@@ -48,7 +49,6 @@
             position: relative;
         }
 
-        /* theme toggle now centered below logo with DAY/NIGHT text */
         .theme-toggle {
             margin-top: 16px;
             display: flex;
@@ -94,7 +94,6 @@
             background: #324762;
         }
 
-        /* Logo area */
         .logo-area {
             display: flex;
             align-items: center;
@@ -118,19 +117,6 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .tagline {
-            font-weight: 500;
-            color: #64748b;
-            font-size: 18px;
-            text-align: center;
-            margin-top: 4px;
-        }
-        
-        .night-mode .tagline {
-            color: #9aaec9;
-        }
-
-        /* ---------- Cards & sections : soft borders, minimal red ---------- */
         .city-card, .service-card, .result-card, .section {
             background: #ffffff;
             border-radius: 28px;
@@ -167,12 +153,10 @@
             color: #edf2f9;
         }
         
-        /* ----- change #citySection h2 icon color to RED (point 2) ----- */
         .section h2 i {
-            color: #b91c1c; /* changed from blue to red */
+            color: #b91c1c; 
         }
 
-        /* ---------- PROFESSIONAL CITY SELECTOR - Clean, elegant, visible ---------- */
         .city-selector-wrapper {
             display: flex;
             flex-direction: column;
@@ -192,7 +176,7 @@
         .city-select-trigger {
             background: white;
             border: 1px solid #d0dfee;
-            border-radius: 16px; /* More professional square-ish corners */
+            border-radius: 16px; 
             padding: 18px 24px;
             font-size: 18px;
             font-weight: 500;
@@ -257,10 +241,9 @@
             display: flex;
         }
         
-        /* Professional city options - clean, subtle, visible */
         .city-option {
             background: transparent;
-            border: 1px solid transparent; /* No thick border, just subtle */
+            border: 1px solid transparent;
             padding: 16px 20px;
             font-size: 18px;
             font-weight: 500;
@@ -276,15 +259,18 @@
             gap: 12px;
         }
         
-        /* Add a subtle icon before each city for better visibility */
         .city-option::before {
-            content: "\f3c5"; /* map-marker-alt */
+            content: "\f3c5"; 
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
-            color: blue; /* red to match heading icon */
+            color: #3b82f6;
             font-size: 16px;
-            opacity: 0.7;
-            transition: opacity 0.15s;
+            opacity: 0.9;
+            transition: color 0.2s ease;
+        }
+
+        .night-mode .city-option::before {
+            color: #b91c1c;
         }
         
         .night-mode .city-option {
@@ -298,36 +284,12 @@
             transform: translateX(4px);
         }
         
-        .city-option:hover::before {
-            opacity: 1;
-        }
-        
         .night-mode .city-option:hover {
             background: #2f4462;
             border-color: #4d6b8f;
             color: white;
         }
         
-        /* Selected city style (optional) */
-        .city-option:active {
-            background: #e5f0ff;
-            transform: scale(0.99);
-        }
-
-        /* Alternative modern style - uncomment if you prefer cards
-        .city-option {
-            background: #f8fafd;
-            border: 1px solid #e2eaf5;
-            margin-bottom: 4px;
-        }
-        .city-option:hover {
-            background: #ffffff;
-            border-color: #3b82f6;
-            box-shadow: 0 4px 12px rgba(59,130,246,0.1);
-        }
-        */
-
-        /* service grid with refined colours (order: hospital, ambulance, police, fire) */
         .service-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -359,37 +321,33 @@
             border-color: #31475f;
         }
         
-        .service-card i {
-            font-size: 40px;
-            margin-bottom: 15px;
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
             display: block;
+            margin: 0 auto 15px auto;
             transition: transform 0.2s;
+            filter: none;
         }
         
-        /* point 4: icon colors and changes */
-        .service-card[data-service="hospital"] i { color: #b91c1c; }      /* red unchanged */
-        .service-card[data-service="ambulance"] i { color: green; }    /* almost black */
-        .night-mode .service-card[data-service="ambulance"] i { color: green; }
-        /* police -> star icon, bright sky blue */
-        .service-card[data-service="police"] i { 
-            color: #fde047;  /* bright sky blue */
-        }
-        /* fire -> bright yellow */
-        .service-card[data-service="fire"] i { 
-            color: #2563eb;  /* bright yellow */
-                    .night-mode .service-card[data-service="fire"] i { color: #2563eb ; }
-
+        .service-card:hover .service-icon {
+            transform: scale(1.05);
         }
         
-        /* hover: only scale, no red background */
+        .emergency-btn {
+            background: #b91c1c;
+            color: white;
+            box-shadow: 0 6px 14px rgba(185,28,28,0.2);
+        }
+        .emergency-btn:hover {
+            background: #991b1b;
+        }
+        
         .service-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 14px 28px -10px rgba(0,60,130,0.15);
             border-color: #a0bbd9;
-        }
-        
-        .service-card:hover i {
-            transform: scale(1.05);
         }
         
         .night-mode .service-card:hover {
@@ -397,7 +355,6 @@
             border-color: #5881aa;
         }
 
-        /* search */
         .search-box {
             margin: 24px 0 20px;
             position: relative;
@@ -434,7 +391,6 @@
             color: #809ab3;
         }
 
-        /* results grid */
         .results-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -512,7 +468,7 @@
         }
         
         .call-btn {
-            background: #2563eb;   /* blue, less red */
+            background: #2563eb;
             color: white;
             box-shadow: 0 6px 14px rgba(37,99,235,0.2);
         }
@@ -520,16 +476,6 @@
         .call-btn:hover {
             background: #1d4ed8;
             transform: translateY(-2px);
-        }
-        
-        /* point 5: emergency button color red */
-        .emergency-btn {
-            background: #b91c1c;  /* bright red */
-            color: white;
-            box-shadow: 0 6px 14px rgba(185,28,28,0.2);
-        }
-        .emergency-btn:hover {
-            background: #991b1b;
         }
         
         .map-btn {
@@ -550,7 +496,6 @@
             border-color: #2563eb;
         }
 
-        /* back buttons - less red, more neutral */
         .back-btn {
             background: transparent;
             border: 2px solid #64748b;
@@ -591,7 +536,6 @@
             width: 100%;
         }
 
-        /* pagination - softer */
         .pagination {
             display: flex;
             justify-content: center;
@@ -642,7 +586,6 @@
             font-size: 16px;
         }
         
-        /* FOOTER — fixed at bottom (point 3) */
         .page-footer {
             text-align: center;
             padding: 32px 0 16px;
@@ -650,7 +593,7 @@
             border-top: 1px solid #d2e0ee;
             color: #627a98;
             width: 100%;
-            flex-shrink: 0; /* keeps footer at bottom of flex column */
+            flex-shrink: 0;
         }
         
         .night-mode .page-footer {
@@ -658,7 +601,6 @@
             color: #8aa2c0;
         }
 
-        /* QR image styling (point 8) */
         .qr-code {
             display: flex;
             justify-content: center;
@@ -667,7 +609,7 @@
         .qr-code img {
             width: 110px;
             height: auto;
-            border-radius: 24px; /* rounded corners */
+            border-radius: 24px;
             border: 2px solid #d4e0ec;
             padding: 8px;
             background: white;
@@ -677,7 +619,6 @@
             background: #1e2f45;
         }
 
-        /* adjust container & body for footer always at bottom */
         html, body {
             height: 100%;
         }
@@ -688,17 +629,143 @@
         .container {
             flex: 1 0 auto;
         }
+
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-left: 4px solid #b91c1c;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease, fadeOut 0.5s ease 2.5s forwards;
+            max-width: 350px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .night-mode .toast-notification {
+            background: #26374e;
+            border-color: #3a4c65;
+            border-left-color: #b91c1c;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+        }
+
+        .toast-icon {
+            background: #fee2e2;
+            color: #b91c1c;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .night-mode .toast-icon {
+            background: #3b2a2a;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .night-mode .toast-title {
+            color: #f1f5f9;
+        }
+
+        .toast-message {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .night-mode .toast-message {
+            color: #9aaec9;
+        }
+
+        .toast-close {
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+        }
+
+        .toast-close:hover {
+            color: #475569;
+        }
+
+        .night-mode .toast-close:hover {
+            color: #cbd5e1;
+        }
+
+        .unavailable-map {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+
+        .night-mode .unavailable-map {
+            background: #334155;
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        .unavailable-map:hover {
+            background: #e2e8f0 !important;
+            color: #475569 !important;
+            transform: translateY(-2px);
+        }
+
+        .night-mode .unavailable-map:hover {
+            background: #3f4a5c !important;
+            color: #cbd5e1 !important;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Top header: centered logo, theme toggle now centered below -->
         <div class="top-header">
             <div class="logo-area">
                 <h1>QUICK DIAL</h1>
             </div>
-<div class="beta-badge" style="font-size: 14px; color: red; margin-top: 3px;">Under Maintenance · Contacts Aren't Verified</div>
-<!-- DAY/NIGHT toggle centred with text -->
+            <div class="beta-badge" style="font-size: 14px; color: red; margin-top: 3px;">Under Maintenance · Contacts Aren't Verified</div>
             <div class="theme-toggle">
                 <button class="theme-btn" id="themeBtn">
                     <i class="fas fa-sun"></i> <span>DAY / NIGHT</span> <i class="fas fa-moon"></i>
@@ -706,7 +773,6 @@
             </div>
         </div>
 
-        <!-- City Selection Section - Professional clean design -->
         <div id="citySection" class="section">
             <h2><i class="fas fa-map-marker-alt"></i> Select your city</h2>
             <div class="city-selector-wrapper">
@@ -716,7 +782,6 @@
                     </div>
                 </div>
                 <div class="city-dropdown" id="cityDropdown">
-                    <!-- nine cities one under another with clean professional style -->
                     <button class="city-option" data-city="dhaka">Dhaka</button>
                     <button class="city-option" data-city="chittagong">Chittagong</button>
                     <button class="city-option" data-city="rajshahi">Rajshahi</button>
@@ -730,7 +795,6 @@
             </div>
         </div>
 
-        <!-- Service Section (order: hospital - ambulance - police - fire) -->
         <div id="serviceSection" class="section hidden">
             <div class="back-top-wrapper">
                 <button class="back-btn" onclick="goBackToCities()"><i class="fas fa-arrow-left"></i> Back</button>
@@ -738,10 +802,22 @@
 
             <h2><span id="selectedCityDisplay"></span> <i class="fas fa-chevron-right" style="font-size: 20px; color:#94a3b8;"></i></h2>
             <div class="service-grid">
-                <button class="service-card" data-service="hospital"><i class="fas fa-hospital"></i>Hospitals</button>
-                <button class="service-card" data-service="ambulance"><i class="fas fa-ambulance"></i>Ambulance</button>
-                <button class="service-card" data-service="police"><i class="fas fa-star"></i>Police Station</button>
-                <button class="service-card" data-service="fire"><i class="fas fa-fire-extinguisher"></i>Fire Service</button>
+                <button class="service-card" data-service="hospital">
+                    <img class="service-icon" src="https://images4.imagebam.com/2f/bd/72/ME1AYVGV_o.png" alt="hospital">
+                    Hospitals
+                </button>
+                <button class="service-card" data-service="ambulance">
+                    <img class="service-icon" src="https://images4.imagebam.com/b1/5b/7c/ME1AYWK6_o.png" alt="ambulance">
+                    Ambulance
+                </button>
+                <button class="service-card" data-service="police">
+                    <img class="service-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Bangladesh_Police_Insignia_Patch.svg" alt="police">
+                    Police
+                </button>
+                <button class="service-card" data-service="fire">
+                    <img class="service-icon" src="https://images4.imagebam.com/65/92/96/ME1AYWIO_o.png" alt="fire">
+                    Emergency
+                </button>
             </div>
 
             <div class="back-bottom-wrapper">
@@ -749,7 +825,6 @@
             </div>
         </div>
 
-        <!-- Results Section (with map link placeholder) -->
         <div id="resultSection" class="section hidden">
             <div class="back-top-wrapper">
                 <button class="back-btn" onclick="goBackToServices()"><i class="fas fa-arrow-left"></i> Back</button>
@@ -757,7 +832,6 @@
 
             <h2 id="resultHeader"></h2>
             
-            <!-- search only for hospitals -->
             <div id="searchBox" class="search-box hidden">
                 <input type="text" id="searchInput" placeholder="Search by name or area..." autocomplete="off">
                 <i class="fas fa-search"></i>
@@ -770,12 +844,9 @@
                 <button class="back-btn" onclick="goBackToServices()"><i class="fas fa-arrow-left"></i> Back</button>
             </div>
         </div>
+    </div>
 
-    </div> <!-- end container -->
-
-    <!-- FOOTER with QR image and copyright (fixed at bottom) -->
     <footer class="page-footer">
-        <!-- point 8: QR code image above reserved -->
         <div class="qr-code">
             <img src="https://images.iimg.live/images/amazing-work-4507.webp" alt="QR Code">
         </div>
@@ -783,12 +854,11 @@
     </footer>
 
     <script>
-        // ---------- COMPREHENSIVE DATABASE with ALL hospitals from Google Maps ----------
-   const database = {
+     const database = {
     dhaka: {
         name: "Dhaka",
         police: [
-            { name: "Dhaka Metropolitan Police (Foreigners Help Desk)", number: "01700-700700", location: "Emergency Assistance (24/7)" },
+            { name: "Dhaka Metropolitan Police", number: "01700-700700", location: "Emergency Assistance (24/7)" },
             { name: "Gulshan Police Station", number: "9880234", location: "Gulshan-1, Dhaka" },
             { name: "Ramna Police Station", number: "01713455661", location: "Ramna, Dhaka" },
             { name: "Dhanmondi Police Station", number: "01713455663", location: "Road 2, Dhanmondi, Dhaka" },
@@ -808,43 +878,30 @@
             { name: "Lalbagh Fire Station", number: "01769000117", location: "Lalbagh, Dhaka" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Dhaka Medical College Hospital", number: "01716344134", address: "Secretariat Road, Shahbagh, Dhaka", emergency: "01708414618", mapLink: "https://maps.app.goo.gl/dhakamedical" },
-            { name: "Sir Salimullah Medical College Hospital (Mitford)", number: "01819471327", address: "Mitford Road, Dhaka", emergency: "01701758090", mapLink: "https://maps.app.goo.gl/mitford" },
-            { name: "Shaheed Suhrawardy Medical College Hospital", number: "01912770284", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01712442628", mapLink: "https://maps.app.goo.gl/suhrawardy" },
-            { name: "Mugda Medical College Hospital", number: "01746198005", address: "Khilgaon, Mugda Para, Dhaka", emergency: "01746198006", mapLink: "https://maps.app.goo.gl/mugda" },
-            { name: "Bangabandhu Sheikh Mujib Medical University", number: "01712865342", address: "Shahbagh, Dhaka", emergency: "01708414622", mapLink: "https://maps.app.goo.gl/bsmmu" },
-            
-            // === SPECIALIZED GOVERNMENT HOSPITALS ===
-            { name: "National Institute of Cardiovascular Diseases (NICVD)", number: "01711524236", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01711524237", mapLink: "https://maps.app.goo.gl/nicvd" },
-            { name: "National Institute of Neurosciences & Hospital (NINS)", number: "01712683768", address: "Agargaon, Dhaka", emergency: "01712683769", mapLink: "https://maps.app.goo.gl/nins" },
-            { name: "National Institute of Traumatology & Orthopaedic Rehabilitation (NITOR)", number: "01718708010", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01718708011", mapLink: "https://maps.app.goo.gl/nitor" },
-            { name: "National Institute of Cancer Research & Hospital (NICRH)", number: "01716787889", address: "Mohakhali, Dhaka", emergency: "01716787890", mapLink: "https://maps.app.goo.gl/nicrh" },
-            { name: "National Institute of Mental Health & Hospital (NIMH)", number: "01731011696", address: "Sher-E-Bangla Nagar, Dhaka", mapLink: "https://maps.app.goo.gl/nimh" },
-            { name: "National Institute of Chest Diseases & Hospital (NIDCH)", number: "01711524238", address: "Mohakhali, Dhaka", mapLink: "https://maps.app.goo.gl/nidch" },
-            { name: "Institute of Public Health", number: "02-8816459", address: "Mohakhali, Dhaka", mapLink: "https://maps.app.goo.gl/iph" },
-            { name: "National Institute of Laboratory Medicine & Referral Centre", number: "02-9139817", address: "Sher-E-Bangla Nagar, Dhaka", mapLink: "https://maps.app.goo.gl/nilmrc" },
-            { name: "National Institute of Preventive & Social Medicine (NIPSOM)", number: "02-9842275", address: "Mohakhali, Dhaka", mapLink: "https://maps.app.goo.gl/nipsom" },
-            
-            // === GENERAL HOSPITALS ===
-            { name: "Dhaka Infectious Disease Hospital", number: "01769000335", address: "Gulshan, Dhaka", emergency: "01769000336", mapLink: "https://maps.app.goo.gl/infectious" },
-            { name: "Kurmitola General Hospital", number: "01709297101", address: "Kurmitola, Dhaka", emergency: "01709297102", mapLink: "https://maps.app.goo.gl/kurmitola" },
-            { name: "Dhaka Shishu (Children) Hospital", number: "01715816261", address: "Shyamoli, Dhaka", emergency: "01727738385", mapLink: "https://maps.app.goo.gl/shisu" },
-            { name: "Bangladesh Eye Hospital", number: "01731684625", address: "Farmgate, Dhaka", emergency: "01731684626", mapLink: "https://maps.app.goo.gl/eyehospital" },
-            
-            // === UPAZILA HEALTH COMPLEXES ==
-            
-            // === UNION HEALTH SUB CENTERS ===
-            
-            // === PRIVATE HOSPITALS & CLINICS ===
-            
-            // === ADDITIONAL PRIVATE HOSPITALS (Dhaka City) ===
-            { name: "Square Hospital", number: "01713455667", address: "18/F, West Panthapath, Dhaka", emergency: "01713455666", mapLink: "https://maps.app.goo.gl/squarehospital" },
-            { name: "United Hospital", number: "01914001234", address: "Plot 15, Road 71, Gulshan, Dhaka", emergency: "01914001232", mapLink: "https://maps.app.goo.gl/unitedhospital" },
-            { name: "Evercare Hospital (Apollo)", number: "01744455667", address: "Plot 81, Block E, Bashundhara R/A, Dhaka", emergency: "10678", mapLink: "https://maps.app.goo.gl/evercare" },
-            { name: "Birdem Hospital", number: "01716262388", address: "Shahbagh, Dhaka", emergency: "01716262389", mapLink: "https://maps.app.goo.gl/birdem" },
-            { name: "Popular Medical College Hospital", number: "09613787800", address: "House: 08, Road: 02, Dhanmondi, Dhaka", emergency: "09613787801", mapLink: "https://maps.app.goo.gl/popular" },
-            { name: "Labaid Hospital", number: "01712345678", address: "House 6, Road 4, Dhanmondi, Dhaka", emergency: "01712345679", mapLink: "https://maps.app.goo.gl/labaiddhanmondi" },
+            { name: "Dhaka Medical College Hospital", number: "01716344134", address: "Secretariat Road, Shahbagh, Dhaka", emergency: "01708414618" },
+            { name: "Sir Salimullah Medical College Hospital (Mitford)", number: "01819471327", address: "Mitford Road, Dhaka", emergency: "01701758090" },
+            { name: "Shaheed Suhrawardy Medical College Hospital", number: "01912770284", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01712442628" },
+            { name: "Mugda Medical College Hospital", number: "01746198005", address: "Khilgaon, Mugda Para, Dhaka", emergency: "01746198006" },
+            { name: "Bangabandhu Sheikh Mujib Medical University", number: "01712865342", address: "Shahbagh, Dhaka", emergency: "01708414622" },
+            { name: "National Institute of Cardiovascular Diseases (NICVD)", number: "01711524236", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01711524237" },
+            { name: "National Institute of Neurosciences & Hospital (NINS)", number: "01712683768", address: "Agargaon, Dhaka", emergency: "01712683769" },
+            { name: "National Institute of Traumatology & Orthopaedic Rehabilitation (NITOR)", number: "01718708010", address: "Sher-E-Bangla Nagar, Dhaka", emergency: "01718708011" },
+            { name: "National Institute of Cancer Research & Hospital (NICRH)", number: "01716787889", address: "Mohakhali, Dhaka", emergency: "01716787890" },
+            { name: "National Institute of Mental Health & Hospital (NIMH)", number: "01731011696", address: "Sher-E-Bangla Nagar, Dhaka" },
+            { name: "National Institute of Chest Diseases & Hospital (NIDCH)", number: "01711524238", address: "Mohakhali, Dhaka" },
+            { name: "Institute of Public Health", number: "02-8816459", address: "Mohakhali, Dhaka" },
+            { name: "National Institute of Laboratory Medicine & Referral Centre", number: "02-9139817", address: "Sher-E-Bangla Nagar, Dhaka" },
+            { name: "National Institute of Preventive & Social Medicine (NIPSOM)", number: "02-9842275", address: "Mohakhali, Dhaka" },
+            { name: "Dhaka Infectious Disease Hospital", number: "01769000335", address: "Gulshan, Dhaka", emergency: "01769000336" },
+            { name: "Kurmitola General Hospital", number: "01709297101", address: "Kurmitola, Dhaka", emergency: "01709297102" },
+            { name: "Dhaka Shishu (Children) Hospital", number: "01715816261", address: "Shyamoli, Dhaka", emergency: "01727738385" },
+            { name: "Bangladesh Eye Hospital", number: "01731684625", address: "Farmgate, Dhaka", emergency: "01731684626" },
+            { name: "Square Hospital", number: "01713455667", address: "18/F, West Panthapath, Dhaka", emergency: "01713455666" },
+            { name: "United Hospital", number: "01914001234", address: "Plot 15, Road 71, Gulshan, Dhaka", emergency: "01914001232" },
+            { name: "Evercare Hospital (Apollo)", number: "01744455667", address: "Plot 81, Block E, Bashundhara R/A, Dhaka", emergency: "10678" },
+            { name: "Birdem Hospital", number: "01716262388", address: "Shahbagh, Dhaka", emergency: "01716262389" },
+            { name: "Popular Medical College Hospital", number: "09613787800", address: "House: 08, Road: 02, Dhanmondi, Dhaka", emergency: "09613787801" },
+            { name: "Labaid Hospital", number: "01712345678", address: "House 6, Road 4, Dhanmondi, Dhaka", emergency: "01712345679" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide (Police, Fire, Ambulance)" },
@@ -869,40 +926,33 @@
             { name: "Bayezid Fire Station", number: "01769000226", location: "Bayezid Bostami, Chattogram" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Chattogram Medical College Hospital", number: "01817-228980", address: "K.B. Fazlul Kader Road, Chattogram", emergency: "01817-228981", mapLink: "https://maps.app.goo.gl/ctgmedical" },
-            { name: "Bangladesh Institute of Tropical & Infectious Diseases", number: "02-44075160", address: "Chattogram", mapLink: "https://maps.app.goo.gl/bitid" },
-            
-            // === DISTRICT SADAR HOSPITALS ===
-            { name: "250 Bed District Sadar Hospital, Cox's Bazar", number: "01717-122049", address: "Cox's Bazar", mapLink: "https://maps.app.goo.gl/coxshospital" },
-            { name: "Cumilla Medical College Hospital", number: "01969-376121", address: "Cumilla", mapLink: "https://maps.app.goo.gl/comillamedical" },
-            { name: "Noakhali General Hospital", number: "01769-004002", address: "Noakhali", mapLink: "https://maps.app.goo.gl/noakhali" },
-            { name: "Feni General Hospital", number: "01769-004003", address: "Feni", mapLink: "https://maps.app.goo.gl/feni" },
-            { name: "Lakshmipur General Hospital", number: "01769-004004", address: "Lakshmipur", mapLink: "https://maps.app.goo.gl/lakshmipur" },
-            { name: "Bandarban General Hospital", number: "01769-004005", address: "Bandarban", mapLink: "https://maps.app.goo.gl/bandarban" },
-            { name: "Khagrachari General Hospital", number: "01769-004006", address: "Khagrachari", mapLink: "https://maps.app.goo.gl/khagrachari" },
-            { name: "Rangamati General Hospital", number: "01769-004007", address: "Rangamati", mapLink: "https://maps.app.goo.gl/rangamati" },
-            { name: "Brahmanbaria General Hospital", number: "01769-004008", address: "Brahmanbaria", mapLink: "https://maps.app.goo.gl/brahmanbaria" },
-            { name: "Chandpur General Hospital", number: "01769-004009", address: "Chandpur", mapLink: "https://maps.app.goo.gl/chandpur" },
-            
-            // === PRIVATE HOSPITALS & CLINICS ===
-            { name: "Cumilla Al Noor Hospital", number: "10036791", address: "Cumilla Adarsha Sadar", mapLink: "https://maps.app.goo.gl/alnoor" },
-            { name: "Janaseba Hospital and Digital Diagnostic Center", number: "10036780", address: "Homna, Cumilla", mapLink: "https://maps.app.goo.gl/janaseba" },
-            { name: "The Union Hospital and Diagnostic Center", number: "10036781", address: "Brahmanbaria Sadar", mapLink: "https://maps.app.goo.gl/union" },
-            { name: "New Life Hospital", number: "10036803", address: "Chandina, Cumilla", mapLink: "https://maps.app.goo.gl/newlife" },
-            { name: "Debidwar Green Life Medical Services", number: "10036778", address: "Debidwar, Cumilla", mapLink: "https://maps.app.goo.gl/greenlife" },
-            { name: "Salim Diagnostic & Medical Center", number: "10036770", address: "Muradnagar, Cumilla", mapLink: "https://maps.app.goo.gl/salim" },
-            { name: "Sajeda Diagnostic Center", number: "10036771", address: "Satkania, Chattogram", mapLink: "https://maps.app.goo.gl/sajeda" },
-            { name: "Chatkhil Normal Delivery Hospital (Pvt.)", number: "10036787", address: "Chatkhil, Noakhali", mapLink: "https://maps.app.goo.gl/chatkhil" },
-            
-            // === ADDITIONAL PRIVATE HOSPITALS (Chittagong City) ===
-            { name: "Parkview Hospital", number: "01799887766", address: "Panchlaish, Chattogram", emergency: "01799887755", mapLink: "https://maps.app.goo.gl/parkviewctg" },
-            { name: "Epic Healthcare", number: "01711223344", address: "Khulshi, Chattogram", mapLink: "https://maps.app.goo.gl/epicctg" },
-            { name: "CSCR Hospital", number: "01722667788", address: "GEC Circle, Chattogram", mapLink: "https://maps.app.goo.gl/cscr" },
-            { name: "National Hospital", number: "01744556677", address: "Chattogram", mapLink: "https://maps.app.goo.gl/nationalctg" },
-            { name: "Chattogram Maa-O-Shishu Hospital", number: "01755667788", address: "Chattogram", emergency: "01755667789", mapLink: "https://maps.app.goo.gl/maoshishuctg" },
-            { name: "Usmania Memorial Hospital", number: "01766778899", address: "Chattogram", mapLink: "https://maps.app.goo.gl/usmania" },
-            { name: "Chittagong Eye Infirmary & Hospital", number: "01777889900", address: "Chattogram", mapLink: "https://maps.app.goo.gl/ctgeye" }
+            { name: "Chattogram Medical College Hospital", number: "01817-228980", address: "K.B. Fazlul Kader Road, Chattogram", emergency: "01817-228981" },
+            { name: "Bangladesh Institute of Tropical & Infectious Diseases", number: "02-44075160", address: "Chattogram" },
+            { name: "250 Bed District Sadar Hospital, Cox's Bazar", number: "01717-122049", address: "Cox's Bazar" },
+            { name: "Cumilla Medical College Hospital", number: "01969-376121", address: "Cumilla" },
+            { name: "Noakhali General Hospital", number: "01769-004002", address: "Noakhali" },
+            { name: "Feni General Hospital", number: "01769-004003", address: "Feni" },
+            { name: "Lakshmipur General Hospital", number: "01769-004004", address: "Lakshmipur" },
+            { name: "Bandarban General Hospital", number: "01769-004005", address: "Bandarban" },
+            { name: "Khagrachari General Hospital", number: "01769-004006", address: "Khagrachari" },
+            { name: "Rangamati General Hospital", number: "01769-004007", address: "Rangamati" },
+            { name: "Brahmanbaria General Hospital", number: "01769-004008", address: "Brahmanbaria" },
+            { name: "Chandpur General Hospital", number: "01769-004009", address: "Chandpur" },
+            { name: "Cumilla Al Noor Hospital", number: "10036791", address: "Cumilla Adarsha Sadar" },
+            { name: "Janaseba Hospital and Digital Diagnostic Center", number: "10036780", address: "Homna, Cumilla" },
+            { name: "The Union Hospital and Diagnostic Center", number: "10036781", address: "Brahmanbaria Sadar" },
+            { name: "New Life Hospital", number: "10036803", address: "Chandina, Cumilla" },
+            { name: "Debidwar Green Life Medical Services", number: "10036778", address: "Debidwar, Cumilla" },
+            { name: "Salim Diagnostic & Medical Center", number: "10036770", address: "Muradnagar, Cumilla" },
+            { name: "Sajeda Diagnostic Center", number: "10036771", address: "Satkania, Chattogram" },
+            { name: "Chatkhil Normal Delivery Hospital (Pvt.)", number: "10036787", address: "Chatkhil, Noakhali" },
+            { name: "Parkview Hospital", number: "01799887766", address: "Panchlaish, Chattogram", emergency: "01799887755" },
+            { name: "Epic Healthcare", number: "01711223344", address: "Khulshi, Chattogram" },
+            { name: "CSCR Hospital", number: "01722667788", address: "GEC Circle, Chattogram" },
+            { name: "National Hospital", number: "01744556677", address: "Chattogram" },
+            { name: "Chattogram Maa-O-Shishu Hospital", number: "01755667788", address: "Chattogram", emergency: "01755667789" },
+            { name: "Usmania Memorial Hospital", number: "01766778899", address: "Chattogram" },
+            { name: "Chittagong Eye Infirmary & Hospital", number: "01777889900", address: "Chattogram" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -921,31 +971,24 @@
             { name: "Mymensingh Fire Service & Civil Defense", number: "01769000237", location: "Headquarters, Mymensingh" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Mymensingh Medical College Hospital", number: "091-66063", address: "Medical College Road, Mymensingh 2200", emergency: "01711555443", mapLink: "https://maps.app.goo.gl/mymensinghmedical" },
-            
-            // === DISTRICT SADAR HOSPITALS (Mymensingh Division) ===
-            { name: "Netrokona General Hospital", number: "01769-004010", address: "Netrokona", mapLink: "https://maps.app.goo.gl/netrokona" },
-            { name: "Jamalpur General Hospital", number: "01769-004011", address: "Jamalpur", mapLink: "https://maps.app.goo.gl/jamalpur" },
-            { name: "Sherpur General Hospital", number: "01769-004012", address: "Sherpur", mapLink: "https://maps.app.goo.gl/sherpur" },
-            { name: "Kishoreganj General Hospital", number: "01769-004013", address: "Kishoreganj", mapLink: "https://maps.app.goo.gl/kishoreganj" },
-            
-            // === PRIVATE HOSPITALS & CLINICS ===
-            { name: "Apex Hospital", number: "10036768", address: "Mymensingh Sadar", mapLink: "https://maps.app.goo.gl/apexmym" },
-            { name: "Iqra Diagnostic Center", number: "10036790", address: "Barhatta, Netrakona", mapLink: "https://maps.app.goo.gl/iqra" },
-            { name: "Jihad Pathology", number: "10036802", address: "Mohanganj, Netrakona", mapLink: "https://maps.app.goo.gl/jihad" },
-            
-            // === ADDITIONAL PRIVATE HOSPITALS ===
-            { name: "Sodesh Hospital (Pvt.) Limited", number: "09666-777990", address: "298/2, Maskanda (Bus Stand), Mymensingh - 2200", emergency: "09666-777990", mapLink: "https://maps.app.goo.gl/sodesh" },
-            { name: "Swadesh Hospital", number: "01734-927758", address: "71/F, Sarda Ghosh Road, Mymensingh - 2200", emergency: "01734-927758", mapLink: "https://maps.app.goo.gl/swadesh" },
-            { name: "Nexus Hospitals Bangladesh", number: "01796-586561", address: "29, Sehora, Mymensingh Sadar", emergency: "01796-586561", mapLink: "https://maps.app.goo.gl/nexus" },
-            { name: "Pranto Specialized Hospital", number: "01788-222000", address: "67 Dhaka-Mymensingh Rd, Mymensingh 2200", emergency: "01788-222000", mapLink: "https://maps.app.goo.gl/pranto" },
-            { name: "Delta Health Care", number: "091-61244", address: "55/4, Dhaka-Mymensingh Road, Charpara", emergency: "091-61244", mapLink: "https://maps.app.goo.gl/delta" },
-            { name: "Sayem Diagno Complex & Hospital", number: "01715-808068", address: "30 A, 1 Dengu Bepari Rd, Mymensingh", emergency: "01715-808068", mapLink: "https://maps.app.goo.gl/sayem" },
-            { name: "Liberty Hospital", number: "01919-292867", address: "308, Mymensingh – Bhairab Rd", emergency: "01919-292867", mapLink: "https://maps.app.goo.gl/liberty" },
-            { name: "LabAid Hospital, Mymensingh", number: "01766-663000", address: "Mymensingh Medical College Area", emergency: "01766-663000", mapLink: "https://maps.app.goo.gl/labaidmym" },
-            { name: "Mymensingh Union Specialized Hospital Limited", number: "01324-160080", address: "Union Tower, Dhaka-Mymensingh Rd", emergency: "01324-160080", mapLink: "https://maps.app.goo.gl/unionmym" },
-            { name: "Trauma Center & AO Orthopaedic Hospital", number: "01912-807456", address: "66/1b Baghmara Rd, Charpara", emergency: "01912-807456", mapLink: "https://maps.app.goo.gl/traumamym" }
+            { name: "Mymensingh Medical College Hospital", number: "091-66063", address: "Medical College Road, Mymensingh 2200", emergency: "01711555443" },
+            { name: "Netrokona General Hospital", number: "01769-004010", address: "Netrokona" },
+            { name: "Jamalpur General Hospital", number: "01769-004011", address: "Jamalpur" },
+            { name: "Sherpur General Hospital", number: "01769-004012", address: "Sherpur" },
+            { name: "Kishoreganj General Hospital", number: "01769-004013", address: "Kishoreganj" },
+            { name: "Apex Hospital", number: "10036768", address: "Mymensingh Sadar" },
+            { name: "Iqra Diagnostic Center", number: "10036790", address: "Barhatta, Netrakona" },
+            { name: "Popular Diagnostic Centre Ltd.", number: "09666-787814", address: "255 Charpara Rd, Mymensingh" },
+            { name: "Sodesh Hospital (Pvt.) Limited", number: "09666-777990", address: "298/2, Maskanda (Bus Stand), Mymensingh - 2200", emergency: "09666-777990" },
+            { name: "Swadesh Hospital", number: "01734-927758", address: "71/F, Sarda Ghosh Road, Mymensingh - 2200", emergency: "01734-927758" },
+            { name: "Nexus Hospitals Bangladesh", number: "01796-586561", address: "29, Sehora, Mymensingh Sadar", emergency: "01796-586561" },
+            { name: "Pranto Specialized Hospital", number: "01788-222000", address: "67 Dhaka-Mymensingh Rd, Mymensingh 2200", emergency: "01788-222000" },
+            { name: "Delta Health Care", number: "091-61244", address: "55/4, Dhaka-Mymensingh Road, Charpara", emergency: "091-61244" },
+            { name: "Sayem Diagno Complex & Hospital", number: "01715-808068", address: "30 A, 1 Dengu Bepari Rd, Mymensingh", emergency: "01715-808068" },
+            { name: "Liberty Hospital", number: "01919-292867", address: "308, Mymensingh – Bhairab Rd", emergency: "01919-292867" },
+            { name: "LabAid Hospital, Mymensingh", number: "01766-663000", address: "Mymensingh Medical College Area", emergency: "01766-663000" },
+            { name: "Mymensingh Union Specialized Hospital Limited", number: "01324-160080", address: "Union Tower, Dhaka-Mymensingh Rd", emergency: "01324-160080" },
+            { name: "Trauma Center & AO Orthopaedic Hospital", number: "01912-807456", address: "66/1b Baghmara Rd, Charpara", emergency: "01912-807456" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -953,7 +996,6 @@
         ]
     },
     
-    // === RAJSHAHI DIVISION ===
     rajshahi: {
         name: "Rajshahi",
         police: [
@@ -972,24 +1014,19 @@
             { name: "Kashiadanga Fire Station", number: "01769-000229", location: "Kashiadanga, Rajshahi" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Rajshahi Medical College Hospital", number: "01711-555999", address: "Laxmipur, Rajshahi", emergency: "01711-555998", mapLink: "https://maps.app.goo.gl/rajshahimedical" },
-            
-            // === DISTRICT SADAR HOSPITALS (Rajshahi Division) ===
-            { name: "Bogura Shaheed Ziaur Rahman Medical College Hospital", number: "01769-004000", address: "Bogura", mapLink: "https://maps.app.goo.gl/boguramedical" },
-            { name: "Pabna Medical College Hospital", number: "01769-004001", address: "Pabna", mapLink: "https://maps.app.goo.gl/pabnamedical" },
-            { name: "Sirajganj General Hospital", number: "01769-004014", address: "Sirajganj", mapLink: "https://maps.app.goo.gl/sirajganj" },
-            { name: "Naogaon General Hospital", number: "01769-004015", address: "Naogaon", mapLink: "https://maps.app.goo.gl/naogaon" },
-            { name: "Natore General Hospital", number: "01769-004016", address: "Natore", mapLink: "https://maps.app.goo.gl/natore" },
-            { name: "Chapainawabganj General Hospital", number: "01769-004017", address: "Chapainawabganj", mapLink: "https://maps.app.goo.gl/chapainawabganj" },
-            { name: "Joypurhat General Hospital", number: "01769-004018", address: "Joypurhat", mapLink: "https://maps.app.goo.gl/joypurhat" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Islami Bank Hospital", number: "01711555997", address: "Rajshahi", emergency: "01711555996", mapLink: "https://maps.app.goo.gl/islamibankraj" },
-            { name: "Barind Medical College Hospital", number: "01711223344", address: "Rajshahi", mapLink: "https://maps.app.goo.gl/barind" },
-            { name: "Rajshahi Eye Hospital", number: "01722334455", address: "Rajshahi", mapLink: "https://maps.app.goo.gl/rajshahieye" },
-            { name: "Samorita Hospital Rajshahi", number: "01733445566", address: "Rajshahi", mapLink: "https://maps.app.goo.gl/samoritaraj" },
-            { name: "Khawja Yunus Ali Medical College", number: "01744556677", address: "Sirajganj", mapLink: "https://maps.app.goo.gl/yunusali" }
+            { name: "Rajshahi Medical College Hospital", number: "01711-555999", address: "Laxmipur, Rajshahi", emergency: "01711-555998" },
+            { name: "Bogura Shaheed Ziaur Rahman Medical College Hospital", number: "01769-004000", address: "Bogura" },
+            { name: "Pabna Medical College Hospital", number: "01769-004001", address: "Pabna" },
+            { name: "Sirajganj General Hospital", number: "01769-004014", address: "Sirajganj" },
+            { name: "Naogaon General Hospital", number: "01769-004015", address: "Naogaon" },
+            { name: "Natore General Hospital", number: "01769-004016", address: "Natore" },
+            { name: "Chapainawabganj General Hospital", number: "01769-004017", address: "Chapainawabganj" },
+            { name: "Joypurhat General Hospital", number: "01769-004018", address: "Joypurhat" },
+            { name: "Islami Bank Hospital", number: "01711555997", address: "Rajshahi", emergency: "01711555996" },
+            { name: "Barind Medical College Hospital", number: "01711223344", address: "Rajshahi" },
+            { name: "Rajshahi Eye Hospital", number: "01722334455", address: "Rajshahi" },
+            { name: "Samorita Hospital Rajshahi", number: "01733445566", address: "Rajshahi" },
+            { name: "Khawja Yunus Ali Medical College", number: "01744556677", address: "Sirajganj" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -997,7 +1034,6 @@
         ]
     },
     
-    // === KHULNA DIVISION ===
     khulna: {
         name: "Khulna",
         police: [
@@ -1015,25 +1051,20 @@
             { name: "Khalishpur Fire Station", number: "01769-000231", location: "Khalishpur, Khulna" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Khulna Medical College Hospital", number: "01779-099336", address: "Sonadanga, Khulna", emergency: "01711555887", mapLink: "https://maps.app.goo.gl/khulnamedical" },
-            
-            // === DISTRICT SADAR HOSPITALS (Khulna Division) ===
-            { name: "Jessore General Hospital", number: "01769-004019", address: "Jessore", mapLink: "https://maps.app.goo.gl/jessore" },
-            { name: "Kushtia General Hospital", number: "01769-004020", address: "Kushtia", mapLink: "https://maps.app.goo.gl/kushtia" },
-            { name: "Jhenaidah General Hospital", number: "01769-004021", address: "Jhenaidah", mapLink: "https://maps.app.goo.gl/jhenaidah" },
-            { name: "Satkhira General Hospital", number: "01769-004022", address: "Satkhira", mapLink: "https://maps.app.goo.gl/satkhira" },
-            { name: "Meherpur General Hospital", number: "01769-004023", address: "Meherpur", mapLink: "https://maps.app.goo.gl/meherpur" },
-            { name: "Magura General Hospital", number: "01769-004024", address: "Magura", mapLink: "https://maps.app.goo.gl/magura" },
-            { name: "Chuadanga General Hospital", number: "01769-004025", address: "Chuadanga", mapLink: "https://maps.app.goo.gl/chuadanga" },
-            { name: "Narail General Hospital", number: "01769-004026", address: "Narail", mapLink: "https://maps.app.goo.gl/narail" },
-            { name: "Bagerhat General Hospital", number: "01769-004027", address: "Bagerhat", mapLink: "https://maps.app.goo.gl/bagerhat" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Khulna City Medical College Hospital", number: "01711555886", address: "Khulna", emergency: "01711555885", mapLink: "https://maps.app.goo.gl/khulnacitymedical" },
-            { name: "City Hospital Khulna", number: "01711223344", address: "Khulna", mapLink: "https://maps.app.goo.gl/citykhulna" },
-            { name: "Khulna Eye Hospital", number: "01722334455", address: "Khulna", mapLink: "https://maps.app.goo.gl/khulnaeye" },
-            { name: "Gazi Medical College Hospital", number: "01733445566", address: "Khulna", mapLink: "https://maps.app.goo.gl/gazikhulna" }
+            { name: "Khulna Medical College Hospital", number: "01779-099336", address: "Sonadanga, Khulna", emergency: "01711555887" },
+            { name: "Jessore General Hospital", number: "01769-004019", address: "Jessore" },
+            { name: "Kushtia General Hospital", number: "01769-004020", address: "Kushtia" },
+            { name: "Jhenaidah General Hospital", number: "01769-004021", address: "Jhenaidah" },
+            { name: "Satkhira General Hospital", number: "01769-004022", address: "Satkhira" },
+            { name: "Meherpur General Hospital", number: "01769-004023", address: "Meherpur" },
+            { name: "Magura General Hospital", number: "01769-004024", address: "Magura" },
+            { name: "Chuadanga General Hospital", number: "01769-004025", address: "Chuadanga" },
+            { name: "Narail General Hospital", number: "01769-004026", address: "Narail" },
+            { name: "Bagerhat General Hospital", number: "01769-004027", address: "Bagerhat" },
+            { name: "Khulna City Medical College Hospital", number: "01711555886", address: "Khulna", emergency: "01711555885" },
+            { name: "City Hospital Khulna", number: "01711223344", address: "Khulna" },
+            { name: "Khulna Eye Hospital", number: "01722334455", address: "Khulna" },
+            { name: "Gazi Medical College Hospital", number: "01733445566", address: "Khulna" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -1041,7 +1072,6 @@
         ]
     },
     
-    // === BARISAL DIVISION ===
     barisal: {
         name: "Barisal",
         police: [
@@ -1055,19 +1085,14 @@
             { name: "Nathullabad Fire Station", number: "01769-000232", location: "Nathullabad, Barisal" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Sher-e-Bangla Medical College Hospital", number: "01716-848288", address: "Barisal Sadar", emergency: "01711555776", mapLink: "https://maps.app.goo.gl/sherbangla" },
-            
-            // === DISTRICT SADAR HOSPITALS (Barisal Division) ===
-            { name: "Patuakhali General Hospital", number: "01769-004028", address: "Patuakhali", mapLink: "https://maps.app.goo.gl/patuakhali" },
-            { name: "Bhola General Hospital", number: "01769-004029", address: "Bhola", mapLink: "https://maps.app.goo.gl/bhola" },
-            { name: "Pirojpur General Hospital", number: "01769-004030", address: "Pirojpur", mapLink: "https://maps.app.goo.gl/pirojpur" },
-            { name: "Jhalokathi General Hospital", number: "01769-004031", address: "Jhalokathi", mapLink: "https://maps.app.goo.gl/jhalokathi" },
-            { name: "Barguna General Hospital", number: "01769-004032", address: "Barguna", mapLink: "https://maps.app.goo.gl/barguna" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Barisal Eye Hospital", number: "01711223344", address: "Barisal", mapLink: "https://maps.app.goo.gl/barisaleye" },
-            { name: "City Hospital Barisal", number: "01722334455", address: "Barisal", mapLink: "https://maps.app.goo.gl/citybarisal" }
+            { name: "Sher-e-Bangla Medical College Hospital", number: "01716-848288", address: "Barisal Sadar", emergency: "01711555776" },
+            { name: "Patuakhali General Hospital", number: "01769-004028", address: "Patuakhali" },
+            { name: "Bhola General Hospital", number: "01769-004029", address: "Bhola" },
+            { name: "Pirojpur General Hospital", number: "01769-004030", address: "Pirojpur" },
+            { name: "Jhalokathi General Hospital", number: "01769-004031", address: "Jhalokathi" },
+            { name: "Barguna General Hospital", number: "01769-004032", address: "Barguna" },
+            { name: "Barisal Eye Hospital", number: "01711223344", address: "Barisal" },
+            { name: "City Hospital Barisal", number: "01722334455", address: "Barisal" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -1075,7 +1100,6 @@
         ]
     },
     
-    // === SYLHET DIVISION ===
     sylhet: {
         name: "Sylhet",
         police: [
@@ -1089,21 +1113,16 @@
             { name: "Khadimnagar Fire Station", number: "01769-000234", location: "Khadimnagar, Sylhet" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Sylhet MAG Osmani Medical College Hospital", number: "01819-800333", address: "Mirboxtula, Sylhet", emergency: "01711555665", mapLink: "https://maps.app.goo.gl/osmanimedical" },
-            
-            // === DISTRICT SADAR HOSPITALS (Sylhet Division) ===
-            { name: "Moulvibazar General Hospital", number: "01769-004033", address: "Moulvibazar", mapLink: "https://maps.app.goo.gl/moulvibazar" },
-            { name: "Habiganj General Hospital", number: "01769-004034", address: "Habiganj", mapLink: "https://maps.app.goo.gl/habiganj" },
-            { name: "Sunamganj General Hospital", number: "01769-004035", address: "Sunamganj", mapLink: "https://maps.app.goo.gl/sunamganj" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Mount Adora Hospital", number: "01711555664", address: "Sylhet", mapLink: "https://maps.app.goo.gl/mountadora" },
-            { name: "Jalalabad Hospital", number: "01711555663", address: "Sylhet", mapLink: "https://maps.app.goo.gl/jalalabadsylhet" },
-            { name: "North East Medical College Hospital", number: "01711223344", address: "Sylhet", mapLink: "https://maps.app.goo.gl/northeast" },
-            { name: "Sylhet Women's Medical College Hospital", number: "01722334455", address: "Sylhet", mapLink: "https://maps.app.goo.gl/sylhetwomens" },
-            { name: "Ibne Sina Hospital Sylhet", number: "01733445566", address: "Sylhet", mapLink: "https://maps.app.goo.gl/ibnesinasylhet" },
-            { name: "National Heart Foundation Hospital, Sylhet", number: "01744556677", address: "Sylhet", mapLink: "https://maps.app.goo.gl/heartsylhet" }
+            { name: "Sylhet MAG Osmani Medical College Hospital", number: "01819-800333", address: "Mirboxtula, Sylhet", emergency: "01711555665" },
+            { name: "Moulvibazar General Hospital", number: "01769-004033", address: "Moulvibazar" },
+            { name: "Habiganj General Hospital", number: "01769-004034", address: "Habiganj" },
+            { name: "Sunamganj General Hospital", number: "01769-004035", address: "Sunamganj" },
+            { name: "Mount Adora Hospital", number: "01711555664", address: "Sylhet" },
+            { name: "Jalalabad Hospital", number: "01711555663", address: "Sylhet" },
+            { name: "North East Medical College Hospital", number: "01711223344", address: "Sylhet" },
+            { name: "Sylhet Women's Medical College Hospital", number: "01722334455", address: "Sylhet" },
+            { name: "Ibne Sina Hospital Sylhet", number: "01733445566", address: "Sylhet" },
+            { name: "National Heart Foundation Hospital, Sylhet", number: "01744556677", address: "Sylhet" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -1111,7 +1130,6 @@
         ]
     },
     
-    // === RANGPUR DIVISION ===
     rangpur: {
         name: "Rangpur",
         police: [
@@ -1125,23 +1143,18 @@
             { name: "Carmichael College Fire Station", number: "01769-000236", location: "Carmichael, Rangpur" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Rangpur Medical College Hospital", number: "01711555555", address: "Medical Road, Rangpur", emergency: "01711555554", mapLink: "https://maps.app.goo.gl/rangpurmedical" },
-            
-            // === DISTRICT SADAR HOSPITALS (Rangpur Division) ===
-            { name: "Dinajpur Medical College Hospital", number: "01711555550", address: "Dinajpur", mapLink: "https://maps.app.goo.gl/dinajpurmedical" },
-            { name: "Thakurgaon General Hospital", number: "01769-004036", address: "Thakurgaon", mapLink: "https://maps.app.goo.gl/thakurgaon" },
-            { name: "Panchagarh General Hospital", number: "01769-004037", address: "Panchagarh", mapLink: "https://maps.app.goo.gl/panchagarh" },
-            { name: "Nilphamari General Hospital", number: "01769-004038", address: "Nilphamari", mapLink: "https://maps.app.goo.gl/nilphamari" },
-            { name: "Lalmonirhat General Hospital", number: "01769-004039", address: "Lalmonirhat", mapLink: "https://maps.app.goo.gl/lalmonirhat" },
-            { name: "Kurigram General Hospital", number: "01769-004040", address: "Kurigram", mapLink: "https://maps.app.goo.gl/kurigram" },
-            { name: "Gaibandha General Hospital", number: "01769-004041", address: "Gaibandha", mapLink: "https://maps.app.goo.gl/gaibandha" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Prime Hospital", number: "01711555553", address: "Rangpur", mapLink: "https://maps.app.goo.gl/primehospitalrangpur" },
-            { name: "Rangpur Eye Hospital", number: "01711223344", address: "Rangpur", mapLink: "https://maps.app.goo.gl/rangpureye" },
-            { name: "Community Hospital Rangpur", number: "01722334455", address: "Rangpur", mapLink: "https://maps.app.goo.gl/communityrangpur" },
-            { name: "Zia Heart Foundation", number: "01733445566", address: "Dinajpur", mapLink: "https://maps.app.goo.gl/ziaheart" }
+            { name: "Rangpur Medical College Hospital", number: "01711555555", address: "Medical Road, Rangpur", emergency: "01711555554" },
+            { name: "Dinajpur Medical College Hospital", number: "01711555550", address: "Dinajpur" },
+            { name: "Thakurgaon General Hospital", number: "01769-004036", address: "Thakurgaon" },
+            { name: "Panchagarh General Hospital", number: "01769-004037", address: "Panchagarh" },
+            { name: "Nilphamari General Hospital", number: "01769-004038", address: "Nilphamari" },
+            { name: "Lalmonirhat General Hospital", number: "01769-004039", address: "Lalmonirhat" },
+            { name: "Kurigram General Hospital", number: "01769-004040", address: "Kurigram" },
+            { name: "Gaibandha General Hospital", number: "01769-004041", address: "Gaibandha" },
+            { name: "Prime Hospital", number: "01711555553", address: "Rangpur" },
+            { name: "Rangpur Eye Hospital", number: "01711223344", address: "Rangpur" },
+            { name: "Community Hospital Rangpur", number: "01722334455", address: "Rangpur" },
+            { name: "Zia Heart Foundation", number: "01733445566", address: "Dinajpur" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -1149,7 +1162,6 @@
         ]
     },
     
-    // === COMILLA (Now part of Chattogram Division, but listed separately) ===
     comilla: {
         name: "Comilla",
         police: [
@@ -1162,17 +1174,14 @@
             { name: "Cantonment Fire Station", number: "01769-000240", location: "Comilla Cantonment" }
         ],
         hospital: [
-            // === GOVERNMENT MEDICAL COLLEGE HOSPITALS ===
-            { name: "Comilla Medical College Hospital", number: "01969-376121", address: "Comilla", emergency: "01710003344", mapLink: "https://maps.app.goo.gl/comillamedical" },
-            
-            // === PRIVATE HOSPITALS ===
-            { name: "Eastern Medical College", number: "01710003345", address: "Comilla", emergency: "01710003346", mapLink: "https://maps.app.goo.gl/easterncomilla" },
-            { name: "Comilla Eye Hospital", number: "01711223344", address: "Comilla", mapLink: "https://maps.app.goo.gl/comillaeye" },
-            { name: "City Hospital Comilla", number: "01722334455", address: "Comilla", mapLink: "https://maps.app.goo.gl/citycomilla" },
-            { name: "Labaid Hospital Comilla", number: "01733445566", address: "Comilla", mapLink: "https://maps.app.goo.gl/labaidcomilla" },
-            { name: "Cumilla Al Noor Hospital", number: "10036791", address: "Cumilla Adarsha Sadar", mapLink: "https://maps.app.goo.gl/alnoor" },
-            { name: "New Life Hospital", number: "10036803", address: "Chandina, Cumilla", mapLink: "https://maps.app.goo.gl/newlife" },
-            { name: "Debidwar Green Life Medical Services", number: "10036778", address: "Debidwar, Cumilla", mapLink: "https://maps.app.goo.gl/greenlife" }
+            { name: "Comilla Medical College Hospital", number: "01969-376121", address: "Comilla", emergency: "01710003344" },
+            { name: "Eastern Medical College", number: "01710003345", address: "Comilla", emergency: "01710003346" },
+            { name: "Comilla Eye Hospital", number: "01711223344", address: "Comilla" },
+            { name: "City Hospital Comilla", number: "01722334455", address: "Comilla" },
+            { name: "Labaid Hospital Comilla", number: "01733445566", address: "Comilla" },
+            { name: "Cumilla Al Noor Hospital", number: "10036791", address: "Cumilla Adarsha Sadar" },
+            { name: "New Life Hospital", number: "10036803", address: "Chandina, Cumilla" },
+            { name: "Debidwar Green Life Medical Services", number: "10036778", address: "Debidwar, Cumilla" }
         ],
         ambulance: [
             { name: "National Emergency Service", number: "999", location: "Nationwide" },
@@ -1180,6 +1189,12 @@
         ]
     }
 };
+        // Add your full database here (shortened for brevity - use your complete database)
+        // For the complete code, paste your full database object here
+        
+        // Copy and paste your complete database object from the original code here
+        // I'm keeping it short for this response but you should include your full database
+        
 
         // ---------- STATE ----------
         let selectedCity = '';
@@ -1222,14 +1237,12 @@
                 dropdown.classList.remove('show');
                 trigger.classList.remove('active');
                 
-                // proceed to service section
                 document.getElementById('selectedCityDisplay').innerHTML = database[selectedCity].name;
                 document.getElementById('citySection').classList.add('hidden');
                 document.getElementById('serviceSection').classList.remove('hidden');
             });
         });
 
-        // close dropdown if click outside
         document.addEventListener('click', (e) => {
             if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('show');
@@ -1237,7 +1250,7 @@
             }
         });
 
-        // Service selection (order already in HTML)
+        // Service selection
         document.querySelectorAll('.service-card').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 selectedService = e.currentTarget.getAttribute('data-service');
@@ -1248,18 +1261,51 @@
                 const searchBox = document.getElementById('searchBox');
                 if (selectedService === 'hospital') {
                     searchBox.classList.remove('hidden');
-                    filteredHospitals = cityData.hospital;
+                    filteredHospitals = cityData.hospital || [];
                 } else {
                     searchBox.classList.add('hidden');
                 }
 
                 currentPage = 1;
-                loadResults(selectedService, cityData[selectedService]);
+                loadResults(selectedService, cityData[selectedService] || []);
 
                 document.getElementById('serviceSection').classList.add('hidden');
                 document.getElementById('resultSection').classList.remove('hidden');
             });
         });
+
+        // Global function for map unavailable
+        window.showMapUnavailable = function(hospitalName) {
+            // Remove any existing toast
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="toast-content">
+                    <div class="toast-title">Map Unavailable</div>
+                    <div class="toast-message">Google Maps integration coming soon for ${hospitalName}</div>
+                </div>
+                <div class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 3000);
+        };
 
         function loadResults(service, items) {
             const grid = document.getElementById('resultsGrid');
@@ -1278,15 +1324,17 @@
             let html = '';
             pageItems.forEach(item => {
                 if (service === 'hospital') {
-                    const mapLink = item.mapLink || 'https://maps.app.goo.gl/placeholder';  
-                    // point 5: emergency button red class
+                    const mapLink = item.mapLink || '';  
                     html += `
                         <div class="result-card">
                             <h4><i class="fas fa-hospital"></i> ${item.name}</h4>
                             <p><i class="fas fa-map-pin"></i> ${item.address || 'Address not listed'}</p>
                             <div class="card-actions">
                                 <a href="tel:${item.number}" class="action-btn call-btn"><i class="fas fa-phone"></i> Call</a>
-                                <a href="${mapLink}" target="_blank" rel="noopener noreferrer" class="action-btn map-btn"><i class="fas fa-map-marked-alt"></i> Map</a>
+                                ${mapLink ? 
+                                    `<a href="${mapLink}" target="_blank" rel="noopener noreferrer" class="action-btn map-btn"><i class="fas fa-map-marked-alt"></i> Map</a>` : 
+                                    `<button onclick="showMapUnavailable('${item.name.replace(/'/g, "\\'")}')" class="action-btn map-btn unavailable-map"><i class="fas fa-map-marked-alt"></i> Map</button>`
+                                }
                                 ${item.emergency ? `<a href="tel:${item.emergency}" class="action-btn emergency-btn"><i class="fas fa-exclamation-triangle"></i> Emergency</a>` : ''}
                             </div>
                         </div>
@@ -1322,7 +1370,7 @@
         // Search
         document.getElementById('searchInput').addEventListener('input', function (e) {
             const term = e.target.value.toLowerCase().trim();
-            const cityHospitals = database[selectedCity].hospital;
+            const cityHospitals = database[selectedCity].hospital || [];
             filteredHospitals = cityHospitals.filter(h => 
                 h.name.toLowerCase().includes(term) || (h.address && h.address.toLowerCase().includes(term))
             );
